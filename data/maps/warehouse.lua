@@ -86,9 +86,7 @@ function paul:on_interaction()
 			return false
 		end,
 		-- 2 -- help accepted, wait for assistant
-		function()
-			return false
-		end,
+		never_continue,
 		-- 3
 		function()
 		end
@@ -102,8 +100,27 @@ function assistant:on_interaction()
 		never_continue,
 		-- 2 -- compris ?
 		continue_when_1,
-		-- 3 -- test constructeur
-		fn_testing_warehouse("testConnexion"),
+		-- 3 -- test ajout paul
+		function(r)
+			if r == 2 then
+				return false
+			end
+			res = sol.sql.query("select * from users where email = 'paul@mooc.fun'")
+			if ( res == "Ok" ) then
+				sol.audio.play_sound("wrong") 
+				print("Aucun utilisateur avec le mail 'paul@mooc.fun' trouvé")
+				self.step = 2
+				return false
+			end
+			row = res[1]
+			if ( row["email"] == "paul@mooc.fun" and row["password"] == "citoyen") then
+				return true
+			end
+			sol.audio.play_sound("wrong") 
+			print("L'utilisateur ne correspond pas.", dump(row))
+			self.step = 2
+			return false
+		end,
 		-- 4 -- Ok text
 		always_continue,
 		-- 5 -- test delete

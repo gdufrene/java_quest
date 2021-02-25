@@ -14,9 +14,10 @@ require("scripts/util/dump")
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	gidebessai.step = 6
+	gidebessai.step = 3
 
-	local open = game:get_value("warehouse_door") == "open"
+	-- local open = game:get_value("warehouse_door") ~= "open"
+	local open = false
 	map:set_entities_enabled("warehouse_door", open)
 end
 

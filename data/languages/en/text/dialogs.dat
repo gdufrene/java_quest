@@ -670,7 +670,7 @@ dialog{
   question = "1",
   skip = "all",
   text = [[
-As-tu ajouté "paul" ?
+As-tu ajouté "paul@mooc.fun" ?
 Oui
 Non
 ]],

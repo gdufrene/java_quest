@@ -1,0 +1,876 @@
+properties{
+  x = 0,
+  y = 0,
+  width = 320,
+  height = 240,
+  min_layer = 0,
+  max_layer = 2,
+  tileset = "oh_indoors_stone",
+  music = "same",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 208,
+  width = 128,
+  height = 32,
+  pattern = "wall.down.2",
+}
+
+tile{
+  layer = 0,
+  x = 24,
+  y = 208,
+  width = 112,
+  height = 32,
+  pattern = "wall.down.1",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 48,
+  width = 224,
+  height = 144,
+  pattern = "deep_water",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 192,
+  width = 224,
+  height = 16,
+  pattern = "99",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 32,
+  width = 224,
+  height = 16,
+  pattern = "101",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 48,
+  width = 16,
+  height = 144,
+  pattern = "100",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 80,
+  width = 48,
+  height = 16,
+  pattern = "89",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 0,
+  y = 0,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.4",
+}
+
+tile{
+  layer = 0,
+  x = 0,
+  y = 208,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.3",
+}
+
+tile{
+  layer = 0,
+  x = 32,
+  y = 0,
+  width = 256,
+  height = 32,
+  pattern = "wall.up.2",
+}
+
+tile{
+  layer = 0,
+  x = 0,
+  y = 32,
+  width = 32,
+  height = 176,
+  pattern = "wall.left.2",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 80,
+  width = 32,
+  height = 144,
+  pattern = "brick_floor",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 168,
+  width = 8,
+  height = 48,
+  pattern = "564",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 88,
+  width = 8,
+  height = 16,
+  pattern = "565",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 88,
+  width = 8,
+  height = 16,
+  pattern = "566",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 112,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "79",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 112,
+  y = 48,
+  width = 16,
+  height = 32,
+  pattern = "208",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 176,
+  y = 48,
+  width = 16,
+  height = 32,
+  pattern = "209",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 176,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "82",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 32,
+  width = 48,
+  height = 16,
+  pattern = "81",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 48,
+  width = 48,
+  height = 32,
+  pattern = "1013",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 112,
+  y = 80,
+  width = 16,
+  height = 16,
+  pattern = "90",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 176,
+  y = 80,
+  width = 16,
+  height = 16,
+  pattern = "87",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 80,
+  width = 8,
+  height = 16,
+  pattern = "405",
+}
+
+tile{
+  layer = 0,
+  x = 160,
+  y = 80,
+  width = 8,
+  height = 16,
+  pattern = "410",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 120,
+  width = 128,
+  height = 48,
+  pattern = "brick_floor",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 120,
+  width = 8,
+  height = 16,
+  pattern = "567",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 104,
+  width = 8,
+  height = 16,
+  pattern = "563",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "106",
+}
+
+tile{
+  layer = 0,
+  x = 32,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "105",
+}
+
+tile{
+  layer = 0,
+  x = 32,
+  y = 192,
+  width = 16,
+  height = 16,
+  pattern = "104",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 192,
+  width = 16,
+  height = 16,
+  pattern = "103",
+}
+
+tile{
+  layer = 0,
+  x = 32,
+  y = 48,
+  width = 16,
+  height = 144,
+  pattern = "102",
+}
+
+tile{
+  layer = 0,
+  x = 96,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "106",
+}
+
+tile{
+  layer = 0,
+  x = 192,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "105",
+}
+
+tile{
+  layer = 0,
+  x = 56,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 96,
+  y = 136,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 56,
+  y = 168,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 56,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 88,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 184,
+  width = 16,
+  height = 16,
+  pattern = "wave",
+}
+
+tile{
+  layer = 0,
+  x = 192,
+  y = 48,
+  width = 16,
+  height = 48,
+  pattern = "102",
+}
+
+tile{
+  layer = 0,
+  x = 96,
+  y = 48,
+  width = 16,
+  height = 48,
+  pattern = "100",
+}
+
+tile{
+  layer = 0,
+  x = 112,
+  y = 96,
+  width = 16,
+  height = 16,
+  pattern = "106",
+}
+
+tile{
+  layer = 0,
+  x = 176,
+  y = 96,
+  width = 16,
+  height = 16,
+  pattern = "105",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 136,
+  width = 16,
+  height = 16,
+  pattern = "510",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 88,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "511",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 216,
+  y = 80,
+  width = 16,
+  height = 16,
+  pattern = "513",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 144,
+  y = 64,
+  width = 16,
+  height = 16,
+  pattern = "400",
+}
+
+tile{
+  layer = 0,
+  x = 144,
+  y = 80,
+  width = 16,
+  height = 8,
+  pattern = "399",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 136,
+  width = 32,
+  height = 8,
+  pattern = "352",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 160,
+  width = 32,
+  height = 8,
+  pattern = "353",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 168,
+  width = 32,
+  height = 48,
+  pattern = "wall.right.1",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 208,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.2",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 0,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.1",
+}
+
+tile{
+  layer = 0,
+  x = 288,
+  y = 24,
+  width = 32,
+  height = 112,
+  pattern = "wall.right.1",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 120,
+  width = 128,
+  height = 16,
+  pattern = "561",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 168,
+  width = 128,
+  height = 16,
+  pattern = "561",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 56,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "water_edge.up",
+}
+
+tile{
+  layer = 0,
+  x = 232,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "water_edge.up",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 120,
+  width = 8,
+  height = 16,
+  pattern = "567",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 168,
+  y = 168,
+  width = 8,
+  height = 16,
+  pattern = "572",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 208,
+  width = 8,
+  height = 32,
+  pattern = "349",
+}
+
+tile{
+  layer = 0,
+  x = 160,
+  y = 208,
+  width = 8,
+  height = 32,
+  pattern = "350",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 160,
+  width = 16,
+  height = 8,
+  pattern = "258",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 104,
+  width = 8,
+  height = 112,
+  pattern = "563",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 136,
+  width = 16,
+  height = 8,
+  pattern = "258",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 0,
+  x = 144,
+  y = 112,
+  width = 16,
+  height = 24,
+  pattern = "240",
+  tileset = "oh_temple",
+}
+
+destination{
+  name = "dest_south",
+  layer = 0,
+  x = 152,
+  y = 205,
+  direction = 1,
+}
+
+chest{
+  name = "chest_bomb",
+  layer = 0,
+  x = 152,
+  y = 69,
+  enabled_at_start = false,
+  treasure_name = "bomb",
+  treasure_savegame_variable = "chest_bomb_opened",
+  sprite = "chests/chest_brown",
+}
+
+destination{
+  name = "dest_east",
+  layer = 0,
+  x = 280,
+  y = 157,
+  direction = 2,
+}
+
+switch{
+  name = "switch_bomb",
+  layer = 0,
+  x = 144,
+  y = 120,
+  subtype = "walkable",
+  sound = "soft_tap",
+  needs_block = false,
+  inactivate_when_leaving = false,
+}
+
+dynamic_tile{
+  name = "door1_closed",
+  layer = 0,
+  x = 288,
+  y = 136,
+  width = 32,
+  height = 32,
+  pattern = "wall.right.1",
+}
+
+door{
+  name = "door1",
+  layer = 0,
+  x = 288,
+  y = 144,
+  direction = 0,
+  sprite = "doors/door_very_weak_wall",
+  savegame_variable = "http_door_opened",
+  opening_method = "explosion",
+}
+
+teletransporter{
+  layer = 0,
+  x = 288,
+  y = 144,
+  width = 16,
+  height = 16,
+  destination_map = "http/session",
+  destination = "dest_west",
+}
+
+teletransporter{
+  layer = 0,
+  x = 144,
+  y = 216,
+  width = 16,
+  height = 16,
+  destination_map = "http/hub",
+  destination = "from_beach",
+}
+
+npc{
+  layer = 0,
+  x = 264,
+  y = 141,
+  direction = 3,
+  subtype = 0,
+  behavior = "dialog#simple.use_bomb",
+}
+
+npc{
+  layer = 0,
+  x = 144,
+  y = 165,
+  direction = 3,
+  subtype = 0,
+  behavior = "dialog#hub.param_sign",
+}
+
+tile{
+  layer = 1,
+  x = 48,
+  y = 24,
+  width = 32,
+  height = 8,
+  pattern = "1446",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 1,
+  x = 112,
+  y = 8,
+  width = 16,
+  height = 16,
+  pattern = "330",
+}
+
+tile{
+  layer = 1,
+  x = 176,
+  y = 0,
+  width = 16,
+  height = 16,
+  pattern = "331",
+}
+
+tile{
+  layer = 1,
+  x = 176,
+  y = 16,
+  width = 16,
+  height = 16,
+  pattern = "330",
+}
+
+tile{
+  layer = 1,
+  x = 224,
+  y = 24,
+  width = 32,
+  height = 8,
+  pattern = "1446",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 1,
+  x = 304,
+  y = 128,
+  width = 16,
+  height = 16,
+  pattern = "bomb_door.right.high",
+}
+
+tile{
+  layer = 1,
+  x = 304,
+  y = 160,
+  width = 16,
+  height = 16,
+  pattern = "bomb_door.right.high",
+}
+
+tile{
+  layer = 1,
+  x = 112,
+  y = 0,
+  width = 16,
+  height = 16,
+  pattern = "331",
+}
+
+tile{
+  layer = 1,
+  x = 112,
+  y = 24,
+  width = 16,
+  height = 16,
+  pattern = "330",
+}
+
+tile{
+  layer = 1,
+  x = 176,
+  y = 24,
+  width = 16,
+  height = 16,
+  pattern = "330",
+}
+
+tile{
+  layer = 1,
+  x = 144,
+  y = 224,
+  width = 16,
+  height = 16,
+  pattern = "351",
+}
+
+tile{
+  layer = 1,
+  x = 136,
+  y = 144,
+  width = 16,
+  height = 16,
+  pattern = "259",
+  tileset = "oh_outdoors",
+}
+
+tile{
+  layer = 1,
+  x = 256,
+  y = 120,
+  width = 16,
+  height = 16,
+  pattern = "259",
+  tileset = "oh_outdoors",
+}
+
+dynamic_tile{
+  name = "door1_opened",
+  layer = 1,
+  x = 304,
+  y = 144,
+  width = 16,
+  height = 16,
+  pattern = "354",
+}
+

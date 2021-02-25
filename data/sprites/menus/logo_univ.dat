@@ -1,0 +1,21 @@
+animation{
+  name = "bar1",
+  src_image = "menus/logo_univ_sprite.png",
+  directions = {
+    { x = 6, y = 4, frame_width = 30, frame_height = 85, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "bar2",
+  src_image = "menus/logo_univ_sprite.png",
+  directions = {
+    { x = 6, y = 93, frame_width = 30, frame_height = 30, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "logo",
+  src_image = "menus/logo_univ_sprite.png",
+  directions = {
+    { x = 40, y = 0, frame_width = 110, frame_height = 129, origin_x = 0, origin_y = 0 },
+  },
+}

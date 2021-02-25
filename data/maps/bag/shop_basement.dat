@@ -1,0 +1,893 @@
+properties{
+  x = 0,
+  y = 0,
+  width = 320,
+  height = 240,
+  min_layer = 0,
+  max_layer = 2,
+  tileset = "oh_indoors_cabin",
+  music = "same",
+}
+
+tile{
+  layer = 0,
+  x = 32,
+  y = 32,
+  width = 256,
+  height = 176,
+  pattern = "ground1.1",
+}
+
+tile{
+  layer = 0,
+  x = 120,
+  y = 192,
+  width = 16,
+  height = 16,
+  pattern = "300",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 168,
+  width = 16,
+  height = 16,
+  pattern = "575",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 200,
+  y = 168,
+  width = 8,
+  height = 16,
+  pattern = "574",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 168,
+  width = 8,
+  height = 16,
+  pattern = "576",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 152,
+  width = 8,
+  height = 16,
+  pattern = "577",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 136,
+  width = 8,
+  height = 16,
+  pattern = "580",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 200,
+  y = 152,
+  width = 8,
+  height = 16,
+  pattern = "573",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 152,
+  width = 16,
+  height = 16,
+  pattern = "578",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 136,
+  width = 16,
+  height = 16,
+  pattern = "579",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 200,
+  y = 136,
+  width = 8,
+  height = 16,
+  pattern = "572",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 48,
+  width = 8,
+  height = 144,
+  pattern = "30",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 192,
+  width = 8,
+  height = 8,
+  pattern = "26",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 192,
+  width = 8,
+  height = 8,
+  pattern = "25",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 40,
+  width = 8,
+  height = 8,
+  pattern = "23",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 48,
+  width = 8,
+  height = 144,
+  pattern = "28",
+}
+
+tile{
+  layer = 0,
+  x = 272,
+  y = 40,
+  width = 8,
+  height = 8,
+  pattern = "24",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 40,
+  width = 224,
+  height = 8,
+  pattern = "27",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 56,
+  width = 16,
+  height = 16,
+  pattern = "95",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 104,
+  width = 16,
+  height = 16,
+  pattern = "157",
+}
+
+tile{
+  layer = 0,
+  x = 104,
+  y = 104,
+  width = 16,
+  height = 16,
+  pattern = "157",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 120,
+  width = 16,
+  height = 16,
+  pattern = "95",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 176,
+  width = 16,
+  height = 16,
+  pattern = "95",
+}
+
+tile{
+  layer = 0,
+  x = 8,
+  y = 8,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.4",
+}
+
+tile{
+  layer = 0,
+  x = 280,
+  y = 8,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.1",
+}
+
+tile{
+  layer = 0,
+  x = 8,
+  y = 200,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.3",
+}
+
+tile{
+  layer = 0,
+  x = 280,
+  y = 200,
+  width = 32,
+  height = 32,
+  pattern = "corner.in.2",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 8,
+  width = 240,
+  height = 32,
+  pattern = "wall.up.1",
+}
+
+tile{
+  layer = 0,
+  x = 8,
+  y = 40,
+  width = 32,
+  height = 160,
+  pattern = "wall.left.1",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 200,
+  width = 96,
+  height = 32,
+  pattern = "wall.down.2",
+}
+
+tile{
+  layer = 0,
+  x = 280,
+  y = 40,
+  width = 32,
+  height = 160,
+  pattern = "wall.right.2",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 32,
+  width = 48,
+  height = 24,
+  pattern = "169",
+}
+
+tile{
+  layer = 0,
+  x = 104,
+  y = 144,
+  width = 16,
+  height = 16,
+  pattern = "17",
+}
+
+tile{
+  layer = 0,
+  x = 88,
+  y = 144,
+  width = 16,
+  height = 16,
+  pattern = "ground1.2",
+}
+
+tile{
+  layer = 0,
+  x = 80,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "18",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 216,
+  width = 16,
+  height = 16,
+  pattern = "door.down.top_low",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 88,
+  width = 16,
+  height = 16,
+  pattern = "384",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "379",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 104,
+  width = 16,
+  height = 16,
+  pattern = "385",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 240,
+  y = 104,
+  width = 16,
+  height = 16,
+  pattern = "386",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 240,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "380",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 104,
+  width = 16,
+  height = 16,
+  pattern = "387",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 256,
+  y = 72,
+  width = 16,
+  height = 16,
+  pattern = "381",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 224,
+  y = 88,
+  width = 16,
+  height = 16,
+  pattern = "382",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 240,
+  y = 88,
+  width = 16,
+  height = 16,
+  pattern = "383",
+  tileset = "oh_indoors_stone",
+}
+
+tile{
+  layer = 0,
+  x = 120,
+  y = 176,
+  width = 16,
+  height = 16,
+  pattern = "297",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 176,
+  width = 16,
+  height = 16,
+  pattern = "298",
+}
+
+tile{
+  layer = 0,
+  x = 152,
+  y = 176,
+  width = 16,
+  height = 16,
+  pattern = "299",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 192,
+  width = 16,
+  height = 16,
+  pattern = "301",
+}
+
+tile{
+  layer = 0,
+  x = 152,
+  y = 192,
+  width = 16,
+  height = 16,
+  pattern = "302",
+}
+
+tile{
+  layer = 0,
+  x = 48,
+  y = 192,
+  width = 88,
+  height = 8,
+  pattern = "29",
+}
+
+tile{
+  layer = 0,
+  x = 152,
+  y = 192,
+  width = 120,
+  height = 8,
+  pattern = "29",
+}
+
+tile{
+  layer = 0,
+  x = 136,
+  y = 200,
+  width = 16,
+  height = 16,
+  pattern = "2",
+}
+
+tile{
+  layer = 0,
+  x = 152,
+  y = 200,
+  width = 128,
+  height = 32,
+  pattern = "wall.down.2",
+}
+
+tile{
+  layer = 0,
+  x = 120,
+  y = 32,
+  width = 32,
+  height = 24,
+  pattern = "209",
+}
+
+tile{
+  layer = 0,
+  x = 128,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "208",
+}
+
+tile{
+  layer = 0,
+  x = 232,
+  y = 176,
+  width = 16,
+  height = 16,
+  pattern = "ground1.3",
+}
+
+tile{
+  layer = 0,
+  x = 160,
+  y = 120,
+  width = 16,
+  height = 16,
+  pattern = "17",
+}
+
+tile{
+  layer = 0,
+  x = 144,
+  y = 112,
+  width = 16,
+  height = 16,
+  pattern = "ground1.2",
+}
+
+tile{
+  layer = 0,
+  x = 104,
+  y = 40,
+  width = 16,
+  height = 16,
+  pattern = "211",
+}
+
+tile{
+  layer = 0,
+  x = 184,
+  y = 32,
+  width = 24,
+  height = 24,
+  pattern = "167",
+}
+
+tile{
+  layer = 0,
+  x = 208,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "157",
+}
+
+tile{
+  layer = 0,
+  x = 96,
+  y = 80,
+  width = 16,
+  height = 16,
+  pattern = "ground1.3",
+}
+
+tile{
+  layer = 0,
+  x = 40,
+  y = 40,
+  width = 16,
+  height = 16,
+  pattern = "190",
+}
+
+switch{
+  name = "tapis_sw",
+  layer = 0,
+  x = 240,
+  y = 88,
+  subtype = "walkable",
+  needs_block = true,
+  inactivate_when_leaving = true,
+}
+
+block{
+  name = "chest_1",
+  layer = 0,
+  x = 200,
+  y = 101,
+  enabled_at_start = false,
+  sprite = "chests/chest_brown",
+  pushable = true,
+  pullable = true,
+}
+
+npc{
+  name = "dave",
+  layer = 0,
+  x = 248,
+  y = 77,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/man/man2",
+}
+
+block{
+  name = "chest_2",
+  layer = 0,
+  x = 184,
+  y = 101,
+  enabled_at_start = false,
+  sprite = "chests/zoria_chest",
+  pushable = true,
+  pullable = true,
+}
+
+block{
+  name = "chest_3",
+  layer = 0,
+  x = 168,
+  y = 101,
+  enabled_at_start = false,
+  sprite = "chests/zoria_chest",
+  pushable = true,
+  pullable = true,
+}
+
+npc{
+  name = "bob_bag_npc",
+  layer = 0,
+  x = 56,
+  y = 117,
+  enabled_at_start = false,
+  direction = 3,
+  subtype = 0,
+}
+
+npc{
+  name = "spencer_bag_npc",
+  layer = 0,
+  x = 112,
+  y = 117,
+  enabled_at_start = false,
+  direction = 3,
+  subtype = 0,
+}
+
+npc{
+  name = "bob",
+  layer = 0,
+  x = 72,
+  y = 125,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/man/man2.1",
+}
+
+npc{
+  layer = 0,
+  x = 264,
+  y = 69,
+  direction = 3,
+  subtype = 1,
+  behavior = "dialog#dave.bag_1",
+}
+
+custom_entity{
+  name = "dave_bag",
+  layer = 0,
+  x = 264,
+  y = 65,
+  enabled_at_start = false,
+  width = 16,
+  height = 16,
+  direction = 3,
+  sprite = "items/item_bag",
+}
+
+npc{
+  name = "spencer",
+  layer = 0,
+  x = 96,
+  y = 125,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/man/man3.1",
+}
+
+npc{
+  name = "jsp_bag_npc2",
+  layer = 0,
+  x = 224,
+  y = 165,
+  direction = 0,
+  subtype = 0,
+}
+
+npc{
+  name = "jsp_bag_npc1",
+  layer = 0,
+  x = 208,
+  y = 157,
+  direction = 2,
+  subtype = 0,
+}
+
+destination{
+  name = "entrance",
+  layer = 0,
+  x = 144,
+  y = 213,
+  direction = 1,
+}
+
+teletransporter{
+  layer = 0,
+  x = 136,
+  y = 216,
+  width = 16,
+  height = 16,
+  destination_map = "beach",
+  destination = "from_shop",
+}
+
+tile{
+  layer = 1,
+  x = 224,
+  y = 16,
+  width = 48,
+  height = 16,
+  pattern = "170",
+}
+
+tile{
+  layer = 1,
+  x = 48,
+  y = 96,
+  width = 16,
+  height = 8,
+  pattern = "158",
+}
+
+tile{
+  layer = 1,
+  x = 104,
+  y = 96,
+  width = 16,
+  height = 8,
+  pattern = "158",
+}
+
+tile{
+  layer = 1,
+  x = 128,
+  y = 216,
+  width = 32,
+  height = 16,
+  pattern = "door.down.high",
+}
+
+tile{
+  layer = 1,
+  x = 152,
+  y = 200,
+  width = 8,
+  height = 32,
+  pattern = "door.down.left_side",
+}
+
+tile{
+  layer = 1,
+  x = 128,
+  y = 200,
+  width = 8,
+  height = 32,
+  pattern = "door.down.right_side",
+}
+
+tile{
+  layer = 1,
+  x = 112,
+  y = 232,
+  width = 64,
+  height = 16,
+  pattern = "roof",
+}
+
+tile{
+  layer = 1,
+  x = 120,
+  y = 16,
+  width = 32,
+  height = 16,
+  pattern = "210",
+}
+
+tile{
+  layer = 1,
+  x = 184,
+  y = 16,
+  width = 24,
+  height = 16,
+  pattern = "168",
+}
+
+tile{
+  layer = 1,
+  x = 40,
+  y = 32,
+  width = 16,
+  height = 8,
+  pattern = "191",
+}
+
+custom_entity{
+  name = "bob_bag",
+  layer = 1,
+  x = 56,
+  y = 108,
+  enabled_at_start = false,
+  width = 16,
+  height = 16,
+  direction = 3,
+  sprite = "items/item_bag",
+}
+
+custom_entity{
+  name = "spencer_bag",
+  layer = 1,
+  x = 112,
+  y = 108,
+  enabled_at_start = false,
+  width = 16,
+  height = 16,
+  direction = 3,
+  sprite = "items/item_bag",
+}
+
+custom_entity{
+  name = "jsp_bag",
+  layer = 1,
+  x = 208,
+  y = 157,
+  enabled_at_start = false,
+  width = 16,
+  height = 16,
+  direction = 3,
+  sprite = "items/item_bag",
+}
+
+custom_entity{
+  name = "jsp_bag_3",
+  layer = 1,
+  x = 224,
+  y = 165,
+  enabled_at_start = false,
+  width = 16,
+  height = 16,
+  direction = 3,
+  sprite = "items/item_bag",
+}
+

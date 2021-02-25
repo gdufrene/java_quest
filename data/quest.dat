@@ -1,0 +1,20 @@
+quest{
+  solarus_version = "1.6",
+  write_dir = "java_quest",
+  title = "Java Quest",
+  short_description = "Apprenez à développer en Java EE en jouant avec Solarus",
+  long_description = [[
+A travers les énigmes proposées 
+dans cette quête,
+vous allez devoir développer une application web,
+afin de pouvoir avancer,
+ tout en apprenant Java EE - Spring !]],
+  author = "G.Dufrene - ULille",
+  quest_version = "1.0",
+  release_date = "05/03/2021",
+  website = "https://gdufrene.github.io/mooc_jee_spring/",
+  normal_quest_size = "320x240",
+  min_quest_size = "320x240",
+  max_quest_size = "320x240",
+}
+

@@ -1,0 +1,902 @@
+dialog{
+  id = "_shop.amout_full",
+  text = [[
+]],
+}
+
+dialog{
+  id = "_shop.not_enough_money",
+  text = [[
+Pas assez de rubis
+]],
+}
+
+dialog{
+  id = "_shop.question",
+  text = [[
+Prix: $v rubies
+  $? Ok
+  $? Non
+]],
+}
+
+dialog{
+  id = "_treasure.bomb.1",
+  text = [[
+Tu a trouvé des Bombes !
+Appuies sur X pour en poser une
+et tout faire exploser !
+]],
+}
+
+dialog{
+  id = "_treasure.item_bag.1",
+  text = [[
+Un sac magique !
+On peut y ranger une quantité
+incroyable de choses.
+]],
+}
+
+dialog{
+  id = "_treasure.potion.2",
+  text = [[
+Tu as trouvé une potion bleue.
+On l'offre souvent à une divinité.
+]],
+}
+
+dialog{
+  id = "_treasure.potion.3",
+  text = [[
+Tu as trouvé une potion rouge.
+Une divinité aime ce type d'offrande.
+]],
+}
+
+dialog{
+  id = "_treasure.sword.1",
+  text = [[
+You found a sword!
+Press C to use it and
+fight enemies.
+]],
+}
+
+dialog{
+  id = "beach.hole",
+  text = [[
+-- ATTENTION AU TROU --
+On y a vu tomber des gens,
+mais aucun n'est revenu.
+Chemin facultatif sur
+Servlet / Session
+]],
+}
+
+dialog{
+  id = "beach.max",
+  skip = "all",
+  text = [[
+Salut, moi c'est Max Mraz,
+je suis l'auteur d'une grande partie
+des graphismes de ce jeu.
+Je suis auteur d'un jeu nommé 
+Ocean's heart qui est en cours de 
+développement avec le même moteur.
+Ce moteur c'est Solarus !
+Un projet génial initié il y a plus de 
+10 ans par Christopho et sa team.
+
+infos sur www.solarus-games.org
+]],
+}
+
+dialog{
+  id = "beach.shop_panel",
+  text = [[
+          -\[ Chez Dave \]-
+~ Fabrication de sac magique ~
+    exercice sur servlet - jsp
+]],
+}
+
+dialog{
+  id = "beach.to_beach2",
+  skip = "all",
+  text = [[
+^^   Au Nord   ^^
+exercice sur JDBC
+]],
+}
+
+dialog{
+  id = "beavers.brother.1",
+  text = [[
+My idiot brother
+ate the sacred tree.
+]],
+}
+
+dialog{
+  id = "beavers.brother.2",
+  text = [[
+I'm serious. This is
+a real problem!
+]],
+}
+
+dialog{
+  id = "beavers.eater.1",
+  text = [[
+I was hungry.
+]],
+}
+
+dialog{
+  id = "beavers.eater.2",
+  text = [[
+What do you want
+me to say?
+]],
+}
+
+dialog{
+  id = "blacksmith.1",
+  text = [[
+Welcome to the forge, 
+young warrior.
+]],
+}
+
+dialog{
+  id = "blacksmith.2",
+  question = "1",
+  text = [[
+I can forge an adamantine
+sword for you, but you must
+defeat me first. Ha ha ha!
+Do you have what it takes?
+Yes
+Nope
+]],
+}
+
+dialog{
+  id = "blacksmith.3",
+  text = [[
+So you're scared, weakling!
+Ha ha ha ha!
+
+Come back if you change
+your mind.
+]],
+}
+
+dialog{
+  id = "blacksmith.4",
+  text = [[
+Ha ha ha ha ha!
+I knew it!
+You're a courageous one.
+Follow me, and prepare to
+battle, weakling!
+]],
+}
+
+dialog{
+  id = "blacksmith.5",
+  text = [[
+En garde!
+]],
+}
+
+dialog{
+  id = "blacksmith.6",
+  text = [[
+You fight well, boy.
+Ha ha ha ha ha!
+]],
+}
+
+dialog{
+  id = "blacksmith.7",
+  text = [[
+Let good luck forge your fate.
+]],
+}
+
+dialog{
+  id = "bob.step_1",
+  text = [[
+Salut, moi c'est Bob.
+J'attends que Dave me fabrique un 
+sac magique pour ranger mes affaires.
+]],
+}
+
+dialog{
+  id = "bob.step_2",
+  question = "1",
+  skip = "all",
+  text = [[
+Ah, voilà enfin ce sac magique que
+Dave m'avait promis. Je vais pouvoir
+y mettre mes affaires !
+Tu veux regarder dedans ?
+Assure-toi que la requête
+GET /bag liste le contenu du sac.
+La liste d'objets sera un UL avec des 
+<LI class="reference">quantite</LI>
+pour chaque objet.
+Regarde le contenu du sac lorsque ta
+requête GET est prête, tu devrais 
+alors retrouver tous les objets.
+Remettre les objets dans le sac ?
+Non, c'est bon.
+Oui, s'il te plait.
+]],
+}
+
+dialog{
+  id = "bob.step_3",
+  skip = "all",
+  text = [[
+Bien, ce sac m'a l'air bien rempli !
+Mais il ne faudrait pas que la magie
+fasse que tout sac soit identique ...
+Si Dave crée un deuxième sac,
+penses-tu que son contenu sera
+différent ? Tu n'en doutes pas ?
+Demande à Spencer ce qu'il y a
+dans son sac.
+]],
+}
+
+dialog{
+  id = "bob.step_4",
+  text = [[
+Ce sac me convient.
+Tu diras merci à Dave pour moi.
+]],
+}
+
+dialog{
+  id = "dave.bag_1",
+  skip = "all",
+  text = [[
+Je me demande si ce sac est vraiment
+magique ... Il ne semble pas différent
+d'un autre.
+]],
+}
+
+dialog{
+  id = "dave.step_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Salut, je m'appel Dave.
+
+Je fabrique des sacs magiques.
+Tu veux m'aider ?
+Il me faut une page pour ajouter 
+les objets dans le sac.
+Peux tu créer une servlet accessible 
+sur l'url "/bag" ? Cela me permettra de 
+lister et d'ajouter les objets.
+GET /bag devrait offrir un formulaire 
+avec deux champs et un bouton 
+pour valider un ajout en Post.
+Deux inputs nommés "ref" et "qty" 
+de type texte permettront de saisir le 
+nom de l'objet et sa quantité. 
+Ok, tu as compris ?
+    trop facile !
+    répêtes moi ça ...
+]],
+}
+
+dialog{
+  id = "dave.step_10",
+  text = [[
+Très bien, merci de ton aide.
+Je t'offre ce sac magique, tu l'as bien
+mérité !
+]],
+}
+
+dialog{
+  id = "dave.step_11",
+  text = [[
+Encore merci de ton aide.
+]],
+}
+
+dialog{
+  id = "dave.step_2",
+  skip = "all",
+  text = [[
+Bien, voyons si tu as réussis
+à me préparer ce formulaire.
+GET /bag ...
+]],
+}
+
+dialog{
+  id = "dave.step_3",
+  skip = "all",
+  text = [[
+$1Bien ! $3Amène cette caisse 
+au centre du tapis.
+Je transfèrerai le contenu dans le sac.
+POST /bag avec 2 paramètres.
+- ref est le nom de l'item (texte), 
+- qty est la quantité (entier).
+Attention !! 
+Si la requête échoue, la magie risque 
+de faire exploser le coffre !
+]],
+}
+
+dialog{
+  id = "dave.step_4",
+  skip = "all",
+  text = [[
+Pour que ce sac soit résistant,
+il faudrait vérifier la présence des
+paramètres et leurs valeurs.
+Peux tu renvoyer une erreur 400 dans
+le cas où il manque quelquechose ?
+Idem si la quantité n'est pas valide.
+Voilà quelques caisses piégées,
+essaies de me les apporter pour
+vérifier que ce sac est solide.
+]],
+}
+
+dialog{
+  id = "dave.step_5",
+  skip = "all",
+  text = [[
+Parfait.
+Je vais pouvoir donner ce sac à Bob
+qui m'en a commandé un.
+Va lui parler pour voir si celà lui
+convient. Il aura probablement des
+idées pour l'améliorer.
+]],
+}
+
+dialog{
+  id = "dave.step_6",
+  skip = "all",
+  text = [[
+Je dois aussi préparer un sac pour
+Spencer. Il me suffira de faire le
+même sac ... hum, le même ?
+]],
+}
+
+dialog{
+  id = "dave.step_7",
+  skip = "all",
+  text = [[
+Bon, j'ai terminé le sac de Spencer.
+Il ressemble vraiment à celui de Bob.
+Ils sont vraiment identique !
+Vois avec Spencer si celà lui convient.
+]],
+}
+
+dialog{
+  id = "dave.step_8",
+  question = "1",
+  skip = "all",
+  text = [[
+Bob est Spencer semblent content.
+Tu veux aussi un sac ? Bon, ok mais
+rends moi un dernier service...
+Afin de facilier l'entretien de ces sacs
+j'aimerai utiliser une JSP pour
+afficher leur contenu.
+Tu pourrais me fournir une page
+/bag.jsp avec un titre h1 "sac" et qui
+affiche le contenu du sac ?
+Il faudra quand même utiliser les
+sessions pour que le contenu des
+sacs soit correct !
+C'est d'accord ?
+  ok, je veux bien.
+  non, pas maintenant.
+]],
+}
+
+dialog{
+  id = "dave.step_9",
+  skip = "all",
+  text = [[
+Je vais mettre quelques objets dans
+deux sacs. Vérifies que tout reste
+bien en place.
+Quelques POST /bag pour l'ajout.
+Et un GET /bag.jsp pour afficher le
+contenu des sacs. penses au h1 sac !
+Reviens me voir pour ré-initialiser
+le contenu des sacs si nécessaire.
+]],
+}
+
+dialog{
+  id = "hub.param_sign",
+  text = [[
+Soit 2 paramètres a et b envoyés en
+query string. Faîtes la somme et 
+retournez le résultat.
+Requête GET 
+/sum?a=x&b=y
+x et y sont deux entiers.
+]],
+}
+
+dialog{
+  id = "hub.sign_1",
+  text = [[
+Ocean's Heart style beach
+]],
+}
+
+dialog{
+  id = "hub.sign_2",
+  text = [[
+Alex's mystical forest
+8-bit style!
+]],
+}
+
+dialog{
+  id = "hub.sign_3",
+  text = [[
+Diarandor's castle
+]],
+}
+
+dialog{
+  id = "hub.sign_4",
+  text = [[
+Zane's desert
+]],
+}
+
+dialog{
+  id = "hub.sign_5",
+  text = [[
+Children of Solarus
+style house
+]],
+}
+
+dialog{
+  id = "hub.sign_6",
+  text = [[
+Children of Solarus
+style outdoors
+]],
+}
+
+dialog{
+  id = "hub.welcome_sign",
+  skip = "all",
+  text = [[
+Voilà une porte qui ne s'ouvrira 
+que si vous arrivez à répondre à 
+une requête HTTP avec 200
+Appuyez sur l'interrupteur ...
+GET / HTTP/1.1
+Host: localhost:8080
+]],
+}
+
+dialog{
+  id = "joe.wanabuy",
+  ship = "all",
+  text = [[
+Chaque article est placé
+dans un panier le temps
+que tu fasses tes courses.
+Le contenu du panier est
+affiché par GET /cart dont
+le type doit être "text/hml"
+Le panier est un <ul>
+Chaque article sera :
+<li>name:quantité</li>
+Affiche le montant total
+en dessous : <b>montant</b>
+le montant est un entier.
+L'ajout au panier se fait par 
+POST /cart?item=x&qte=y
+item est une chaine, y un entier
+Si une requête ne contient pas
+un des paramètres item ou ref, 
+retourne une erreur 400
+]],
+}
+
+dialog{
+  id = "joe.welcome",
+  skip = "all",
+  text = [[
+Bienvenue chez Jospe !
+Réalise une page jsp pour
+remplir mes rayonnages.
+Le contenu de ce magasin
+dépend de ce qui se trouve
+sur la page /shop/jospe.html
+Un <ul> par "zone",
+un pour le tapis,
+trois autres pour les tables.
+Chaque item doit être de la forme
+<li>name</li>
+à l'intérieur d'un <ul>
+]],
+}
+
+dialog{
+  id = "sacred_tree_sign",
+  text = [[
+North: Sacred Tree
+Do not chop down for
+ANY REASON.
+]],
+}
+
+dialog{
+  id = "session.chest",
+  text = [[
+Ces coffres ne s'ouvriront que si leur
+contenu est bien celui qui a été 
+initialisé pour chaque session.
+]],
+}
+
+dialog{
+  id = "session.divinity",
+  text = [[
+Les divinités aiment les offrandes.
+Tu devrais poser ici quelquechose.
+Cela te mènera peut-être ailleurs ?
+]],
+}
+
+dialog{
+  id = "session.init",
+  skip = "all",
+  text = [[
+Marche sur cette stèle pour initialiser 
+le contenu des deux coffres.
+
+POST /chest?item=x
+Active le contenu d'un coffre.
+x sera un entier.
+GET /chest
+renvoie le contenu activé auparavent.
+A chaque session son coffre.
+]],
+}
+
+dialog{
+  id = "simple.use_bomb",
+  text = [[
+Qui sait ce qui se passerait
+si tu utilises une bombe sur
+ce mur ?
+]],
+}
+
+dialog{
+  id = "spencer.step_1",
+  text = [[
+Je m'appelle Spencer.
+Dave m'a promis un sac magique.
+Mais je crois que Bob attend aussi.
+]],
+}
+
+dialog{
+  id = "spencer.step_2",
+  text = [[
+Mon sac ressemble étrangement à
+celui de Bob. Je me demande si ils
+ne sont pas vraiment identiques.
+Je veux dire que ce serait le même
+sac ... avec les mêmes objets dedans ?!
+Ce n'est pas vraiment pratique.
+Je vais ranger mes affaires dans mon
+sac, peux tu vérifer son contenu et
+celui de Bob ?
+]],
+}
+
+dialog{
+  id = "spencer.step_3",
+  text = [[
+Ce sac est super ! Tu devrais
+demander à Dave de t'en fabriquer
+un similaire !
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_1",
+  text = [[
+Bonjour, je suis Déaho,
+l'assistant de Paul.
+je l'aide dans la tenue des registres.
+Ce n'est pas une tâche facile...
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_2",
+  question = "1",
+  skip = "all",
+  text = [[
+Paul m'a dit que tu pouvais m'aider ?
+C'est très sympa de ta part.
+Cela va vraiment m'aider.
+Notre registre est une base SQLite
+contenant une table "users".
+Réalisons quelques fonctions simples.
+Tu dois compléter la classe java
+UserDaoSqlite pour m'aider, 
+nous le testerons à chaque étape.
+Implémente tout d'abords le
+constructeur en ouvrant une connexion
+vers le fichier passé en paramètre.
+Ensuite implémente la méthode add.
+Utilise le program game.SecondTask
+pour ajouter une personne dont 
+le mail sera "paul@mooc.fun" et le
+mot de passe "citoyen".
+
+Tu as compris ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_3",
+  question = "1",
+  skip = "all",
+  text = [[
+As-tu ajouté "paul" ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_4",
+  skip = "all",
+  text = [[
+Bien, Paul a bien été ajouté dans
+la base de données. Je vais t'ouvrir
+la pièce des archives.
+Tu peux regarder les données des
+utilisateurs en base si tout va bien...
+Jettes y un oeil avant de continuer.
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_5",
+  question = "1",
+  skip = "all",
+  text = [[
+Passons à une méthode facile :
+delete(id) doit supprimer l'utilisateur
+à l'aide un ordre SQL DELETE.
+On teste ta méthode delete ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_6",
+  question = "1",
+  skip = "all",
+  text = [[
+Bien. Passons à la méthode find(id).
+Elle retourne un objet User alimenté
+à l'aide des données de la base.
+Tester la méthode find ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_1",
+  skip = "all",
+  text = [[
+Bonjour, moi c'est Gidébessai.
+Je vais t'ouvrir l'accès à cet
+entrepôt de données.
+Dans un premier temps je vais
+initialiser une base SQLite pour
+nos besoins.
+Ce fichier "data.db" sera situé 
+dans le même dossier que le jeu.
+J'y créerai une table "users".
+Je parle couramment le
+"Escuel", et toi ?
+Sinon tu devrais t'y mettre.
+Il est bien commode de savoir
+parler le Escuel, le langage
+universel des Débéha.
+Un peuple maitrisant toutes les
+subtilités du monde relationnel. 
+. . . Bref, poursuivons.
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_2",
+  question = "1",
+  skip = "all",
+  text = [[
+On crée cette nouvelle base ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_3",
+  text = [[
+"CREATE TABLE USERS(
+  id INTEGER PRIMARY KEY,
+  firstname varchar(80)," \[...\] 
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_4",
+  skip = "all",
+  text = [[
+Hum, c'est ennuyeux, je n'ai pas
+réussi à créer la base SQLite.
+Essaies d'ouvrir la console,
+ou le fichier de log et de chercher
+une erreur qui expliquerait ce 
+problème.
+Tu pourra peut être trouver de 
+l'aide auprès d'un enseignant
+ou d'un autre utilisateur ?
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_5",
+  skip = "all",
+  text = [[
+Parfait. La base est prête à être
+utilisée. Tu peux l'ouvrir avec
+l'outil sqlite3. Ou tu peux aussi
+utiliser JDBC pour lancer des
+roquettes ! (ou était-ce des 
+requettes ?)
+Pour me prouver que tu es en
+mesure de faire une requette,
+effaces la ligne de la table 'users'
+correspondant au mail 
+'gidebessai@mooc.fun'
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_6",
+  question = "1",
+  text = [[
+C'est bon je peux vérifier ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_7",
+  skip = "all",
+  text = [[
+Hum, c'est ennuyeux, je n'arrive
+pas à vérifier si tu as bien
+supprimé cet utilisateur.
+As-tu bien fermé la connexion 
+à la base de donnée ?
+pas de sqlite3 ouvert dessus ?
+Vérifies tout cela et reviens me
+voir...
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_8",
+  skip = "all",
+  text = [[
+Ce n'est pas ce à quoi je 
+m'attendais. Vérifies les logs
+et essayons une nouvelle fois.
+Reviens me voir pour 
+ré-initialiser la base.
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_9",
+  skip = "all",
+  text = [[
+Et bien parfait, tu me sembles 
+suffisemment valeureux pour
+entrer dans l'entrepôt !
+]],
+}
+
+dialog{
+  id = "warehouse.paul_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Salut, je suis Paul.
+Je suis l'administrateur des
+données de nos citoyens.
+Ma bibliothèque est pleine de
+registres contenant les informations
+de chaque personne.
+On fait appel à moi pour vérifier
+l'identité de chaque personne.
+Mon assistant m'aide dans cette tâche.
+C'est lui qui écrit dans les livres,
+mets à jour des données et 
+recherche les infos dont j'ai besoin.
+Mais il aurait bien besoin d'un coup
+de main pour tout cela.
+
+Tu veux bien nous aider ?
+oui.
+pas maintenant.
+]],
+}
+
+dialog{
+  id = "warehouse.paul_2",
+  text = [[
+Merci de ton aide.
+Vois avec mon assistant ce dont
+il a besoin et reviens me voir.
+]],
+}
+
+dialog{
+  id = "warehouse.sign",
+  text = [[
+Entrepôt des données utilisateurs.
+  -- En cours de construction --
+
+Ici sont stockées les informations
+d'identification des citoyens.
+exercice sur JDBC
+]],
+}
+
+dialog{
+  id = "warehouse.wait",
+  skip = "all",
+  text = [[
+---------->
+Salle d'attente
+---------->
+]],
+}
+

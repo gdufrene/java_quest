@@ -1,0 +1,60 @@
+animation{
+  name = "corners",
+  src_image = "hud/items_box.png",
+  directions = {
+    { x = 0, y = 0, frame_width = 7, frame_height = 7, origin_x = 0, origin_y = 0 },
+    { x = 213, y = 0, frame_width = 7, frame_height = 7, origin_x = 0, origin_y = 0 },
+    { x = 213, y = 53, frame_width = 7, frame_height = 7, origin_x = 0, origin_y = 0 },
+    { x = 0, y = 53, frame_width = 7, frame_height = 7, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "borders",
+  src_image = "hud/items_box.png",
+  directions = {
+    { x = 7, y = 0, frame_width = 19, frame_height = 7, origin_x = 0, origin_y = 0 },
+    { x = 213, y = 26, frame_width = 7, frame_height = 19, origin_x = 0, origin_y = 0 },
+    { x = 7, y = 53, frame_width = 19, frame_height = 7, origin_x = 0, origin_y = 0 },
+    { x = 0, y = 7, frame_width = 7, frame_height = 19, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "cursor",
+  src_image = "hud/items_box.png",
+  directions = {
+    { x = 107, y = 61, frame_width = 3, frame_height = 7, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "next",
+  src_image = "hud/items_box.png",
+  frame_delay = 250,
+  frame_to_loop_on = 0,
+  directions = {
+    { x = 0, y = 60, frame_width = 16, frame_height = 8, origin_x = 8, origin_y = 4, num_frames = 3 },
+  },
+}
+animation{
+  name = "scroll",
+  src_image = "hud/items_box.png",
+  directions = {
+    { x = 213, y = 7, frame_width = 7, frame_height = 19, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "slot",
+  src_image = "hud/items_box.png",
+  directions = {
+    { x = 26, y = 7, frame_width = 19, frame_height = 19, origin_x = 0, origin_y = 0 },
+    { x = 26, y = 26, frame_width = 19, frame_height = 19, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "slot_selection",
+  src_image = "hud/items_box.png",
+  frame_delay = 250,
+  frame_to_loop_on = 0,
+  directions = {
+    { x = 7, y = 7, frame_width = 19, frame_height = 19, origin_x = 0, origin_y = 0, num_frames = 2, num_columns = 1 },
+  },
+}

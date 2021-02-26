@@ -10,10 +10,15 @@
 local map = ...
 local game = map:get_game()
 
+local registerServlet = "http://localhost:8080/exo201/registerServlet"
+
+
+
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
 	paul.step = 1
 	assistant.step = 4
+	print("Map started")
 end
 
 -- Event called after the opening transition effect of the map,
@@ -125,15 +130,258 @@ function assistant:on_interaction()
 		function()
 			sol.audio.play_sound("ok")
 			map:set_entities_enabled("archives_door", false)
-			for entity in map:get_entities("etagere_") do
-				-- entity:set_tileset("169")
-			end
 			return false
 		end,
 		-- 5 -- test delete
-		fn_testing_warehouse("testDelete"),
+		function(r)
+			if r == 2 then
+				self.step = self.step - 1
+				return true
+			else
+				self.step = self.step + 1
+				return false
+			end
+		end,
+		-- 6 -- test registerServlet GET ?
+		function(r)
+			if r == 2 then 
+				return false
+			end
+			code = sol.net.http_get(registerServlet)
+			if code < 0 then
+				print("Erreur de connexion vers "..registerServlet)
+				return false
+			end
+			if code == 404 or code >= 500 then
+				print("Erreur "..code.." vers "..registerServlet)
+				return false
+			end
+			local body = "firstname=&lastname=&email=&password=azerty";
+			local ctx = { headers = {} }
+			ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
+			print("[POST] "..body)
+			code = sol.net.http_post(registerServlet, body, ctx)
+			if code < 200 or code >= 400 then
+				print("Erreur "..code)
+				sol.sql.query("delete from users where email = ''")
+				return false
+			end
+			res = sol.sql.query("select * from users where email = ''")
+			if res == "Ok" then 
+				print("L'utilisateur n'a pas été retrouvé dans la base")
+				return false
+			end
+			if type(res) == "table" and res[0]["email"] == '' then
+				-- OK !!
+				sol.audio.play_sound("ok")
+				return true
+			end
+			print("L'utilisateur enregistré n'a pas les bonnes données")
+			sol.sql.query("delete from users where email = ''")
+			return false
+		end,
+		-- 7 -- Succeed
+
+
 	}
 	run_step(self, steps[self.step])
+end
+
+function test_register_noparam(name, data)
+
+	formData = {
+		firstname= "Someone",
+		lastname= "Withname",
+		email= "someone@mooc.fun",
+		password= "azerty",
+	}
+	if type(data) ~= "table" then
+		data = {}
+	end
+	body = ""
+	for k, v in pairs(formData) do
+		if k ~= name then 
+			if body ~= "" then body = body .. "&" end
+			if data[k] then v = data[k] end
+			body = body .. string.format("%s=%s", k, v)
+		end
+	end
+	local ctx = { headers= {} }
+	ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
+	print("[POST] "..body)
+
+	if true then
+		return true -- TODO: for tests only !!!
+	end
+
+	code = sol.net.http_post(registerServlet, body, ctx)
+	if code < 200 or code >= 400 then
+		return false
+	end
+	return true
+end
+
+function archives_sensor:on_activated()
+	if assistant.step == 4 then
+		assistant.step = 5
+		self:set_enabled(false) -- needed ??
+	end
+end
+
+function etagere_1:on_interaction()
+	local txt = game:get_text_box()
+	txt:set_size(40, 6)
+	txt:add_line("Hello world, paul is at " .. paul.step)
+	sol.menu.start(game, txt)
+end
+
+function goto_outside_then(npc, cb)
+	mvt = sol.movement.create("target")
+	mvt:set_ignore_obstacles()
+	mvt:set_target(from_outside, 8, 0)
+	mvt:start(npc, cb)
+end
+
+function do_moves_to_outside_then(npc, cb)
+	fallback_movements(npc, {
+		align_to_waypoint_then,
+		goto_waypoint_then,
+		goto_outside_then,
+		end_movement(cb)
+	})
+end
+
+function do_again_fn(npc)
+	x, y = npc:get_position()
+	npc.initial_position = {x, y}
+	return function()
+		npc.step = 1
+		game:get_hero():teleport(map:get_id(), nil, "fade")
+		npc:set_position( npc.initial_position[0], npc.initial_position[1] )
+		return false
+	end
+end
+
+function npc_try_register(npc, data, ignore_param)
+	return function()
+		if not ignore_param then ignore_param = "" end
+		if not test_register_noparam(ignore_param, data) then
+			npc.step = 3
+			npc:on_interaction()
+			return
+		end
+		npc.step = 4
+		npc:on_interaction()
+	end
+end
+
+function npc_registering_steps(npc, registerFn)
+	if not npc.step then
+		npc.step = 1
+	end
+	local steps = {
+		-- 1 -- register ?
+		continue_when_1,
+		-- 2 -- try to register,
+		function()
+			do_moves_to_assistant_then( npc, registerFn )
+			return false
+		end,
+		-- 3 --
+		do_again_fn(npc),
+		-- 4 --
+		do_moves_to_outside_then(npc, function()
+			npc:set_enabled(false)
+		end),
+	}
+	run_step(npc, steps[npc.step])
+end
+
+function phil:on_interaction()
+	local data = {
+		firstname= "Phil",
+		email= "phil@mooc.fun"
+	}
+	local registerFn = npc_try_register(self, data, "lastname")
+	npc_registering_steps(self, registerFn)
+end
+
+function groot:on_interaction()
+	local data = {
+		lastname= "Groot",
+		email= "phil@mooc.fun"
+	}
+	local registerFn = npc_try_register(self, data, "firstname")
+	npc_registering_steps(self, registerFn)
+end
+
+function kaleido:on_interaction()
+	local data = {
+		firstname= "Grandalf",
+		lastname= "Leviolet",
+		email= "grandalf@mooc.fun"
+	}
+	local registerFn = npc_try_register(self, data, "password")
+	npc_registering_steps(self, registerFn)
+end
+
+function soldier:on_interaction()
+	local data = {
+		firstname= "Arsene",
+		lastname= "Lupin",
+		email= "lionel.seinturier@foo.bar"
+	}
+	local registerFn = npc_try_register(self, data, "")
+	npc_registering_steps(self, registerFn)
+end
+
+function align_to_waypoint_then(npc, cb)
+	local x1, y1 = waypoint:get_position()
+	local x2, y2 = npc:get_position()
+	local mvt = sol.movement.create("target")
+	mvt:set_target(x2, y1)
+	mvt:set_ignore_obstacles()
+	mvt:start(npc, cb)
+end
+
+function goto_waypoint_then(npc, cb)
+	local x1, y1 = waypoint:get_position()
+	local x2, y2 = npc:get_position()
+	local mvt = sol.movement.create("target")
+	mvt:set_target(x1, y1)
+	mvt:set_ignore_obstacles()
+	mvt:start(npc, cb)
+end
+
+function goto_assistant_then(npc, cb)
+	local mvt2 = sol.movement.create("target")
+	mvt2:set_target(assistant, 0, 16)
+	mvt2:set_ignore_obstacles()
+	mvt2:start(npc, cb)
+end
+
+function end_movement(cb)
+	return function(npc, next_cb)
+		cb()
+	end
+end
+
+function fallback_movements(npc, functions)
+	local i = 0
+	nextFn = function()
+		i = i + 1
+		functions[i](npc, nextFn)
+	end
+	nextFn()
+end
+
+function do_moves_to_assistant_then( npc, cb )
+	fallback_movements(npc, {
+		align_to_waypoint_then,
+		goto_waypoint_then,
+		goto_assistant_then,
+		end_movement(cb)
+	})
 end
 
 function store:on_interaction()

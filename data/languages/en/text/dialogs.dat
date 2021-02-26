@@ -111,102 +111,6 @@ exercice sur JDBC
 }
 
 dialog{
-  id = "beavers.brother.1",
-  text = [[
-My idiot brother
-ate the sacred tree.
-]],
-}
-
-dialog{
-  id = "beavers.brother.2",
-  text = [[
-I'm serious. This is
-a real problem!
-]],
-}
-
-dialog{
-  id = "beavers.eater.1",
-  text = [[
-I was hungry.
-]],
-}
-
-dialog{
-  id = "beavers.eater.2",
-  text = [[
-What do you want
-me to say?
-]],
-}
-
-dialog{
-  id = "blacksmith.1",
-  text = [[
-Welcome to the forge, 
-young warrior.
-]],
-}
-
-dialog{
-  id = "blacksmith.2",
-  question = "1",
-  text = [[
-I can forge an adamantine
-sword for you, but you must
-defeat me first. Ha ha ha!
-Do you have what it takes?
-Yes
-Nope
-]],
-}
-
-dialog{
-  id = "blacksmith.3",
-  text = [[
-So you're scared, weakling!
-Ha ha ha ha!
-
-Come back if you change
-your mind.
-]],
-}
-
-dialog{
-  id = "blacksmith.4",
-  text = [[
-Ha ha ha ha ha!
-I knew it!
-You're a courageous one.
-Follow me, and prepare to
-battle, weakling!
-]],
-}
-
-dialog{
-  id = "blacksmith.5",
-  text = [[
-En garde!
-]],
-}
-
-dialog{
-  id = "blacksmith.6",
-  text = [[
-You fight well, boy.
-Ha ha ha ha ha!
-]],
-}
-
-dialog{
-  id = "blacksmith.7",
-  text = [[
-Let good luck forge your fate.
-]],
-}
-
-dialog{
   id = "bob.step_1",
   text = [[
 Salut, moi c'est Bob.
@@ -440,51 +344,6 @@ x et y sont deux entiers.
 }
 
 dialog{
-  id = "hub.sign_1",
-  text = [[
-Ocean's Heart style beach
-]],
-}
-
-dialog{
-  id = "hub.sign_2",
-  text = [[
-Alex's mystical forest
-8-bit style!
-]],
-}
-
-dialog{
-  id = "hub.sign_3",
-  text = [[
-Diarandor's castle
-]],
-}
-
-dialog{
-  id = "hub.sign_4",
-  text = [[
-Zane's desert
-]],
-}
-
-dialog{
-  id = "hub.sign_5",
-  text = [[
-Children of Solarus
-style house
-]],
-}
-
-dialog{
-  id = "hub.sign_6",
-  text = [[
-Children of Solarus
-style outdoors
-]],
-}
-
-dialog{
   id = "hub.welcome_sign",
   skip = "all",
   text = [[
@@ -627,6 +486,15 @@ un similaire !
 }
 
 dialog{
+  id = "warehouse.archives_door",
+  text = [[
+Archives des citoyens.
+Les données de la table
+"Users" y sont accessibles.
+]],
+}
+
+dialog{
   id = "warehouse.assistant_1",
   text = [[
 Bonjour, je suis Déaho,
@@ -694,12 +562,30 @@ dialog{
   question = "1",
   skip = "all",
   text = [[
-Passons à une méthode facile :
-delete(id) doit supprimer l'utilisateur
-à l'aide un ordre SQL DELETE.
-On teste ta méthode delete ?
-Oui
-Non
+Bien. Tu peux compléter les
+autres méthodes du DAO,
+mais avant faisons une servlet.
+Si tu n'as pas encore réaliser 
+de servlet je te conseille d'aller
+voir Joe sur la plage...
+L'objectif est d'utiliser ton DAO
+dans une servlet d'ajout d'un
+citoyen dans les archives.
+Pour celà, complète RegisterServlet.
+Les paramètres à utiliser sont :
+firstname, lastname, email, 
+password, envoyés en POST.
+Si tout se passe bien retourne un
+code HTTP 200 ou une redirection
+vers une pas de confirmation.
+Compile tout cela est lance tomcat
+pour exposer /exo201/register
+Pour valider tout cela, je ferai un
+premier appel en GET. Puis nous
+enregistrerons un citoyen.
+As-tu compris les consignes ?
+Oui, ça va.
+euh, repête moi çà.
 ]],
 }
 
@@ -708,12 +594,30 @@ dialog{
   question = "1",
   skip = "all",
   text = [[
-Bien. Passons à la méthode find(id).
-Elle retourne un objet User alimenté
-à l'aide des données de la base.
-Tester la méthode find ?
-Oui
-Non
+As-tu fini et lancé RegisterServlet ?
+Oui, c'est fait.
+Non, pas encore.
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_7",
+  text = [[
+Excellent. Le plus dur est fait.
+Complétons la jsp "register.jsp" pour
+permettre l'utilisation de la servlet.
+Il faudra maintenant prendre soin 
+de vérifier la présence de tous les
+paramètres du formulaire.
+En cas d'oubli, la JSP sera ré-affichée
+avec un message d'erreur dans
+une div de role alert.
+Il faudra penser à vérifier si un citoyen
+n'est pas déjà enregistré avec l'email
+proposé ... ce ne serait pas normal.
+Si tout se passe bien, redirige la
+requête vers une page de confirmation
+après le traitement.
 ]],
 }
 
@@ -755,6 +659,7 @@ Non
 
 dialog{
   id = "warehouse.gidebessai_3",
+  skip = "all",
   text = [[
 "CREATE TABLE USERS(
   id INTEGER PRIMARY KEY,
@@ -844,6 +749,103 @@ entrer dans l'entrepôt !
 }
 
 dialog{
+  id = "warehouse.groot_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Je s'appelle groot.
+...
+...
+(cette personne n'a pas de prénom,
+à priori, peu de chance que paul
+accepte sa citoyenneté)
+Je s'appelle groot ?
+oui, va voir paul.
+non, attends un peu.
+]],
+}
+
+dialog{
+  id = "warehouse.groot_2",
+  skip = "all",
+  text = [[
+Je s'appelle groot !?
+]],
+}
+
+dialog{
+  id = "warehouse.groot_3",
+  skip = "all",
+  text = [[
+JE S'APPELLE GROOT !!!
+(il semblerait que sa demande soit
+accepté ... étrange)
+Tu devrais revoir la vérification du
+prénom.
+]],
+}
+
+dialog{
+  id = "warehouse.groot_4",
+  skip = "all",
+  text = [[
+Je s'appelle groot ...
+(demande refusée)
+]],
+}
+
+dialog{
+  id = "warehouse.kaleido_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Bonjour je suis Grandalf Leviolet.
+Magicien de profession, je connais
+plus de 1000 sortilèges.
+Par contre, impossible de me rappeler
+mes mots de passe ... donc j'ai choisi
+de ne pas en choisir. simple non ?
+(cette personne n'a plus toute sa 
+tête à priori. Le mot de passe est 
+obligatoire pour l'inscription)
+Puis-je aller m'inscrire ?
+Faites donc cela.
+Vous devriez patienter encore.
+]],
+}
+
+dialog{
+  id = "warehouse.kaleido_2",
+  skip = "all",
+  text = [[
+Un tel magicien ne peut que
+réussir à s'enregistrer, non ?
+]],
+}
+
+dialog{
+  id = "warehouse.kaleido_3",
+  skip = "all",
+  text = [[
+Ma demande a abouttie, je savais
+que mon sort d'ignorance de mot de
+passe fonctionnerait !
+(vous devriez revoir la gestion du mot
+de passe).
+]],
+}
+
+dialog{
+  id = "warehouse.kaleido_4",
+  skip = "all",
+  text = [[
+Demande rejetée... tant pis.
+De toute mainière je ne me rapellerai
+pas de mon mot de passe.
+]],
+}
+
+dialog{
   id = "warehouse.paul_1",
   question = "1",
   skip = "all",
@@ -879,6 +881,50 @@ il a besoin et reviens me voir.
 }
 
 dialog{
+  id = "warehouse.phil_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Hey, moi c'est Phil la marmotte.
+Je n'ai pas de nom mais je veux
+quand même devenir citoyen.
+Je peux aller m'inscrire ?
+Oui
+Non
+]],
+}
+
+dialog{
+  id = "warehouse.phil_2",
+  text = [[
+Je vais demander à Paul de 
+m'aider à faire mon inscription
+dans le registre des citoyens.
+]],
+}
+
+dialog{
+  id = "warehouse.phil_3",
+  text = [[
+Phil a obtenu sa citoyenneté,
+Ce n'est pas normal, le nom est une
+donnée obligatoire.
+Corrige ta servlet et essaies 
+de nouveau ...
+ 
+]],
+}
+
+dialog{
+  id = "warehouse.phil_4",
+  text = [[
+Ma demande de citoyenneté a été
+rejeté car je n'ai pas de nom. Bon,
+je m'y attendais en fait.
+]],
+}
+
+dialog{
   id = "warehouse.sign",
   text = [[
 Entrepôt des données utilisateurs.
@@ -887,6 +933,54 @@ Entrepôt des données utilisateurs.
 Ici sont stockées les informations
 d'identification des citoyens.
 exercice sur JDBC
+]],
+}
+
+dialog{
+  id = "warehouse.soldier_1",
+  question = "1",
+  skip = "all",
+  text = [[
+Je suis un honête citoyen,
+toutes mes informations sont
+conformes, voici mes papiers.
+(cette personne a le même email
+qu'un autre citoyen déjà inscrit, je
+pense que c'est un usurpateur)
+Puis-je aller m'inscrire ?
+Essaies donc.
+Ah, un peu plus tard.
+]],
+}
+
+dialog{
+  id = "warehouse.soldier_2",
+  skip = "all",
+  text = [[
+Héhé, je suis certain de moi !
+Moi, honête citoyen.
+]],
+}
+
+dialog{
+  id = "warehouse.soldier_3",
+  skip = "all",
+  text = [[
+Hihihihi. Ni vu ni connu.
+Cette administration est vraiment 
+trop facile à duper.
+(vous devriez revoir la manière de 
+vérifier l'unicité des email)
+]],
+}
+
+dialog{
+  id = "warehouse.soldier_4",
+  skip = "all",
+  text = [[
+Hé bien j'ai sans doute sous-estimé
+cette administration est tout de même
+bien gérée.
 ]],
 }
 

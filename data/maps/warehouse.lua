@@ -13,7 +13,7 @@ local game = map:get_game()
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
 	paul.step = 1
-	assistant.step = 3
+	assistant.step = 4
 end
 
 -- Event called after the opening transition effect of the map,
@@ -122,7 +122,14 @@ function assistant:on_interaction()
 			return false
 		end,
 		-- 4 -- Ok text
-		always_continue,
+		function()
+			sol.audio.play_sound("ok")
+			map:set_entities_enabled("archives_door", false)
+			for entity in map:get_entities("etagere_") do
+				-- entity:set_tileset("169")
+			end
+			return false
+		end,
 		-- 5 -- test delete
 		fn_testing_warehouse("testDelete"),
 	}

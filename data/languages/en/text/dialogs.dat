@@ -332,6 +332,26 @@ le contenu des sacs si nécessaire.
 }
 
 dialog{
+  id = "endquest.info",
+  text = [[
+Termine les tâches données
+par Joe et Paul afin de 
+partager un certificat de
+réussite sur les réseaux
+sociaux (linkedIn, Facebook)
+]],
+}
+
+dialog{
+  id = "endquest.sign",
+  text = [[
+~ Caverne des mérites ~
+La réussite de ta quête te
+mènera jusqu'ici.
+]],
+}
+
+dialog{
   id = "hub.param_sign",
   text = [[
 Soit 2 paramètres a et b envoyés en
@@ -505,6 +525,18 @@ Ce n'est pas une tâche facile...
 }
 
 dialog{
+  id = "warehouse.assistant_10",
+  text = [[
+Bien, ce formulaire d'inscription me
+semble prêt à l'usage. Cela tombe
+bien, quelques personnes vont
+arriver pour s'enregistrer. Va dire
+à Paul que l'on est prêt à les 
+accueillir. Merci de ton aide.
+]],
+}
+
+dialog{
   id = "warehouse.assistant_2",
   question = "1",
   skip = "all",
@@ -622,6 +654,30 @@ après le traitement.
 }
 
 dialog{
+  id = "warehouse.assistant_8",
+  question = "1",
+  text = [[
+Je peux vérifier ta jsp register ?
+Oui, elle est prête.
+Attends, j'ai pas fini.
+]],
+}
+
+dialog{
+  id = "warehouse.assistant_9",
+  question = "1",
+  skip = "all",
+  text = [[
+Ce n'est pas encore ça. Il y a quelques
+soucis, regarde les logs pour avoir
+plus d'infos.
+Je te rappelle les consignes ?
+Oui, j'ai du oublié un truc.
+Non, ça ira.
+]],
+}
+
+dialog{
   id = "warehouse.gidebessai_1",
   skip = "all",
   text = [[
@@ -631,8 +687,8 @@ entrepôt de données.
 Dans un premier temps je vais
 initialiser une base SQLite pour
 nos besoins.
-Ce fichier "data.db" sera situé 
-dans le même dossier que le jeu.
+Ce fichier "users-data.db" sera situé 
+dans ton répertoire utilisateur.
 J'y créerai une table "users".
 Je parle couramment le
 "Escuel", et toi ?
@@ -643,6 +699,17 @@ universel des Débéha.
 Un peuple maitrisant toutes les
 subtilités du monde relationnel. 
 . . . Bref, poursuivons.
+]],
+}
+
+dialog{
+  id = "warehouse.gidebessai_10",
+  question = "1",
+  skip = "all",
+  text = [[
+Tu veux ré-initialiser la base ?
+Oui, s'il te plait.
+Non, surtout pas.
 ]],
 }
 
@@ -745,6 +812,9 @@ dialog{
 Et bien parfait, tu me sembles 
 suffisemment valeureux pour
 entrer dans l'entrepôt !
+Je vais ré-initialiser la base de
+données. Tu peux venir me voir
+pour le refaire quand tu veux.
 ]],
 }
 
@@ -791,6 +861,15 @@ dialog{
   text = [[
 Je s'appelle groot ...
 (demande refusée)
+]],
+}
+
+dialog{
+  id = "warehouse.infodb",
+  text = [[
+Ces étagères te présente les données
+contenues dans les 6 premiers
+enregistrement de la table users.
 ]],
 }
 
@@ -877,6 +956,82 @@ dialog{
 Merci de ton aide.
 Vois avec mon assistant ce dont
 il a besoin et reviens me voir.
+]],
+}
+
+dialog{
+  id = "warehouse.paul_3",
+  skip = "all",
+  text = [[
+Alors comme ça tout est prêt pour
+l'enregistrement de nos citoyens ?
+Merci de ton aide.
+Voilà justement quelques personnes,
+nous allons pouvoir utiliser ton
+travail ...
+]],
+}
+
+dialog{
+  id = "warehouse.paul_4",
+  question = "1",
+  skip = "all",
+  text = [[
+Certaines personnes n'ont pas 
+réussi à s'enregistrer. Tu pourrais
+voir ce qui ne va pas.
+Relancer les inscriptions ?
+Oui, cette fois c'est bon.
+Juste une dernière vérif.
+]],
+}
+
+dialog{
+  id = "warehouse.paul_5",
+  skip = "all",
+  text = [[
+Ces premières personnes étaient
+des "cas faciles", tout était en règle.
+Les suivantes risquent de nécessiter
+un peu plus de vérifications. 
+Il manquera peut-être des infos
+dans leur enregistrement.
+Va faire connaissance avec chaque
+personne et invite la à venir me
+voir quand tu es prêt.
+]],
+}
+
+dialog{
+  id = "warehouse.paul_6",
+  text = [[
+Il semble que tout se soit passé
+comme prévu ! Le contrôle des 
+données a fonctionné, chacun sait
+pourquoi il n'a pas pu s'enregistrer.
+Quelle belle journée de travail.
+
+Sans ton aide cela n'aurait jamais
+pu être possible. Tu es un excellent
+développeur. Tu mérite amplement
+de faire savoir que tu maitrise les
+fondamentaux du développement
+web en Java EE.
+Voilà la clé de deux coffres situés à
+l'Est, dans la caves des mérites.
+Ta récompense t'y attends.
+]],
+}
+
+dialog{
+  id = "warehouse.paul_7",
+  text = [[
+Ce n'est sans doute que le début
+d'un très long chemin vers tous les
+concepts du développement.
+Mais nul doute qu'avec du temps et
+de la curiosité tu deviendra chaque
+jour plus "grand".
 ]],
 }
 

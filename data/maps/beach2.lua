@@ -14,10 +14,8 @@ require("scripts/util/dump")
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	gidebessai.step = 3
-
-	-- local open = game:get_value("warehouse_door") ~= "open"
-	local open = false
+	gidebessai.step = game:get_value("gidebessai_step") or 1
+	local open = game:get_value("warehouse_door") or true
 	map:set_entities_enabled("warehouse_door", open)
 end
 
@@ -45,21 +43,8 @@ end
 function gidebessai:on_interaction() 
 end
 
-function gidebessai:on_interaction()
-
-	local back_after_intro = function()
-		gidebessai.step = 2
-		return false
-	end
-
-	local steps = {
-		-- 1 -- intro
-		always_continue,
-		-- 2 -- create base ?
-		continue_when_1,
-		-- 3 -- SQL
-		function()
-			res = sol.sql.query(
+function init_database()
+	res = sol.sql.query(
 [[
 -- reset table
 drop table if exists users;
@@ -89,6 +74,25 @@ values
   ('Gide',      'Bessai',     'gidebessai@mooc.fun',       'jdbcrocks');
 
 ]])
+	return res
+end
+
+
+function gidebessai:on_interaction()
+
+	local back_after_intro = function()
+		gidebessai.step = 2
+		return false
+	end
+
+	local steps = {
+		-- 1 -- intro
+		always_continue,
+		-- 2 -- create base ?
+		continue_when_1,
+		-- 3 -- SQL
+		function()
+			res = init_database()
 			if ( res == "Ok" ) then
 				self.step = self.step + 1
 			end
@@ -124,13 +128,18 @@ values
 		function()
 			map:set_entities_enabled("warehouse_door", false)
 			game:set_value("warehouse_door", "open")
+			self.step = 10
+			game:set_value("gidebessai_step", 10)
+			return false
+		end,
+		-- 10 -- re-init database ?
+		function(r)
+			if r == 2 then return false end
+			init_database()
+			return false
 		end
+
 	}
 	run_step(self, steps[self.step])
 end
 
--- Event called after the opening transition effect of the map,
--- that is, when the player takes control of the hero.
-function map:on_opening_transition_finished()
-
-end

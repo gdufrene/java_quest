@@ -19,6 +19,8 @@ function map:on_started()
 	paul.step = 1
 	assistant.step = 4
 	print("Map started")
+	-- code = sol.net.http_get(registerServlet)
+	print("quest dir => ", os.getenv("HOME"))
 end
 
 -- Event called after the opening transition effect of the map,
@@ -142,7 +144,7 @@ function assistant:on_interaction()
 				return false
 			end
 		end,
-		-- 6 -- test registerServlet GET ?
+		-- 6 -- test registerServlet GET et POST ?
 		function(r)
 			if r == 2 then 
 				return false
@@ -171,7 +173,7 @@ function assistant:on_interaction()
 				print("L'utilisateur n'a pas été retrouvé dans la base")
 				return false
 			end
-			if type(res) == "table" and res[0]["email"] == '' then
+			if type(res) == "table" and res[1]["email"] == '' then
 				-- OK !!
 				sol.audio.play_sound("ok")
 				return true
@@ -211,7 +213,7 @@ function test_register_noparam(name, data)
 	print("[POST] "..body)
 
 	if true then
-		return true -- TODO: for tests only !!!
+		return false -- TODO: for tests only !!!
 	end
 
 	code = sol.net.http_post(registerServlet, body, ctx)
@@ -228,18 +230,71 @@ function archives_sensor:on_activated()
 	end
 end
 
-function etagere_1:on_interaction()
+function get_str_user_data(id)
+	id = tonumber(id)
+	res = sol.sql.query("select * from users where id = "..tonumber(id))
+	if res == "Ok" then
+		data = { 
+			"Le tome numéro ["..id.."] est vide."
+		}
+	else
+		res = res[1]
+		data = {
+			"ID : "..res["id"],
+			"Prenom : "..res["firstname"],
+			"Nom : "..res["lastname"],
+			"Email : "..res["email"],
+			"Password : "..res["password"]
+		}
+	end
+	local i = 0
+	return function() -- return iterator
+		i = i + 1
+		return data[i]
+	end
+end
+
+function show_user_data(id)
 	local txt = game:get_text_box()
 	txt:set_size(40, 6)
-	txt:add_line("Hello world, paul is at " .. paul.step)
+	for str in get_str_user_data(id) do
+		txt:add_line( str )
+	end
 	sol.menu.start(game, txt)
+end
+
+function etagere_1:on_interaction()
+	show_user_data(1)
+end
+
+function etagere_2:on_interaction()
+	show_user_data(2)
+end
+
+function etagere_3:on_interaction()
+	show_user_data(3)
+end
+
+function etagere_4:on_interaction()
+	show_user_data(4)
+end
+
+function etagere_5:on_interaction()
+	show_user_data(5)
+end
+
+function etagere_6:on_interaction()
+	show_user_data(6)
 end
 
 function goto_outside_then(npc, cb)
 	mvt = sol.movement.create("target")
 	mvt:set_ignore_obstacles()
 	mvt:set_target(from_outside, 8, 0)
-	mvt:start(npc, cb)
+	mvt:start(npc, function()
+		mvt:stop()
+		cb()
+	end)
 end
 
 function do_moves_to_outside_then(npc, cb)
@@ -252,12 +307,13 @@ function do_moves_to_outside_then(npc, cb)
 end
 
 function do_again_fn(npc)
-	x, y = npc:get_position()
-	npc.initial_position = {x, y}
 	return function()
 		npc.step = 1
 		game:get_hero():teleport(map:get_id(), nil, "fade")
-		npc:set_position( npc.initial_position[0], npc.initial_position[1] )
+		sol.timer.start(750, function()
+			npc:set_position(npc.initial_position[1], npc.initial_position[2])
+			npc:get_sprite():set_animation("stopped")
+		end)
 		return false
 	end
 end
@@ -284,15 +340,23 @@ function npc_registering_steps(npc, registerFn)
 		continue_when_1,
 		-- 2 -- try to register,
 		function()
-			do_moves_to_assistant_then( npc, registerFn )
+			x, y = npc:get_position()
+			npc.initial_position = {x, y}
+			do_moves_to_register_then(npc, registerFn)
 			return false
 		end,
-		-- 3 --
-		do_again_fn(npc),
-		-- 4 --
-		do_moves_to_outside_then(npc, function()
-			npc:set_enabled(false)
-		end),
+		-- 3 -- fail to check param check
+		function()
+			do_moves_to_outside_then(npc, do_again_fn(npc))
+			return false
+		end,
+		-- 4 -- Succeed
+		function()
+			do_moves_to_outside_then(npc, function()
+				npc:set_enabled(false)
+			end)
+			return false
+		end,
 	}
 	run_step(npc, steps[npc.step])
 end
@@ -309,7 +373,7 @@ end
 function groot:on_interaction()
 	local data = {
 		lastname= "Groot",
-		email= "phil@mooc.fun"
+		email= "groot@mooc.fun"
 	}
 	local registerFn = npc_try_register(self, data, "firstname")
 	npc_registering_steps(self, registerFn)
@@ -319,7 +383,8 @@ function kaleido:on_interaction()
 	local data = {
 		firstname= "Grandalf",
 		lastname= "Leviolet",
-		email= "grandalf@mooc.fun"
+		email= "grandalf@mooc.fun",
+		password=""
 	}
 	local registerFn = npc_try_register(self, data, "password")
 	npc_registering_steps(self, registerFn)
@@ -335,13 +400,36 @@ function soldier:on_interaction()
 	npc_registering_steps(self, registerFn)
 end
 
+function movement_factory(npc, configurer)
+	local mvt = sol.movement.create("target")
+	mvt:set_ignore_obstacles()
+	configurer(mvt)
+	-- mvt:set_target(x2, y1)
+	mvt:start(npc, cb)
+
+	Factory = {}
+	function Factory:set_target(e, x, y)
+		mvt:set_target(e, x ,y)
+	end 
+	Factory.start = function(cb)
+		mvt:start(npc, function()
+			mvt:stop()
+			cb()
+		end)
+	end
+	return Factory
+end
+
 function align_to_waypoint_then(npc, cb)
 	local x1, y1 = waypoint:get_position()
 	local x2, y2 = npc:get_position()
 	local mvt = sol.movement.create("target")
 	mvt:set_target(x2, y1)
 	mvt:set_ignore_obstacles()
-	mvt:start(npc, cb)
+	mvt:start(npc, function()
+		mvt:stop()
+		cb()
+	end)
 end
 
 function goto_waypoint_then(npc, cb)
@@ -350,14 +438,20 @@ function goto_waypoint_then(npc, cb)
 	local mvt = sol.movement.create("target")
 	mvt:set_target(x1, y1)
 	mvt:set_ignore_obstacles()
-	mvt:start(npc, cb)
+	mvt:start(npc, function()
+		mvt:stop()
+		cb()
+	end)
 end
 
-function goto_assistant_then(npc, cb)
-	local mvt2 = sol.movement.create("target")
-	mvt2:set_target(assistant, 0, 16)
-	mvt2:set_ignore_obstacles()
-	mvt2:start(npc, cb)
+function goto_register_then(npc, cb)
+	local mvt = sol.movement.create("target")
+	mvt:set_target(paul, 0, 16)
+	mvt:set_ignore_obstacles()
+	mvt:start(npc, function()
+		mvt:stop()
+		cb()
+	end)
 end
 
 function end_movement(cb)
@@ -370,16 +464,18 @@ function fallback_movements(npc, functions)
 	local i = 0
 	nextFn = function()
 		i = i + 1
-		functions[i](npc, nextFn)
+		if functions[i] then
+			functions[i](npc, nextFn)
+		end
 	end
 	nextFn()
 end
 
-function do_moves_to_assistant_then( npc, cb )
+function do_moves_to_register_then( npc, cb )
 	fallback_movements(npc, {
 		align_to_waypoint_then,
 		goto_waypoint_then,
-		goto_assistant_then,
+		goto_register_then,
 		end_movement(cb)
 	})
 end

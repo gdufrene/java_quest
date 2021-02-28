@@ -8,6 +8,7 @@ map{ id = "http/session", description = "use session" }
 map{ id = "http/simple" }
 map{ id = "outside", description = "Outside" }
 map{ id = "town_entrance", description = "Entrée de la ville" }
+map{ id = "treasure", description = "Where the quest ends" }
 map{ id = "warehouse" }
 
 tileset{ id = "oh_cave", description = "Ocean's Heart Cave" }
@@ -118,6 +119,7 @@ sprite{ id = "npc/blacksmith_metal", description = "Blacksmith's metal" }
 sprite{ id = "npc/kaleido", description = "Kaleido" }
 sprite{ id = "npc/magic_ball", description = "Magic ball" }
 sprite{ id = "npc/magic_deck", description = "Magic deck" }
+sprite{ id = "npc/man/groot", description = "Je s'appelle groot" }
 sprite{ id = "npc/man/man1" }
 sprite{ id = "npc/man/man2" }
 sprite{ id = "npc/man/man2.1" }
@@ -401,6 +403,8 @@ file{ path = "maps/outside.dat", author = "Christopho", license = "CC BY-SA 4.0"
 file{ path = "maps/outside.lua", author = "Christopho", license = "GPL v3" }
 file{ path = "maps/town_entrance.dat", author = "G.Dufrene", license = "CC-BY-NC" }
 file{ path = "maps/town_entrance.lua", author = "G.Dufrene", license = "CC-BY-NC" }
+file{ path = "maps/treasure.dat", author = "G.Dufrene", license = "CC BY-NC-SA" }
+file{ path = "maps/treasure.lua", author = "G.Dufrene", license = "CC BY-NC-SA" }
 file{ path = "musics", license = "CC BY-SA 4.0" }
 file{ path = "musics/eduardo", author = "Eduardo Dueñas", license = "CC BY-SA 4.0" }
 file{ path = "musics/eduardo/boss.ogg", author = "Eduardo Dueñas", license = "CC BY-SA 4.0" }
@@ -910,6 +914,7 @@ file{ path = "sprites/npc/kaleido.dat", author = "Diarandor", license = "CC BY-S
 file{ path = "sprites/npc/kaleido.png", author = "Diarandor", license = "CC BY-SA 4.0" }
 file{ path = "sprites/npc/magic_ball.dat", author = "Diarandor", license = "CC BY-SA 4.0" }
 file{ path = "sprites/npc/magic_deck.dat", author = "Diarandor", license = "CC BY-SA 4.0" }
+file{ path = "sprites/npc/man/groot.dat", author = "G.Dufrene", license = "CC BY-SA-NC" }
 file{ path = "sprites/npc/sign.dat", author = "Christopho", license = "CC BY-SA 4.0" }
 file{ path = "sprites/npc/sign.png", author = "Bertam", license = "CC BY-SA 4.0" }
 file{ path = "sprites/npc/witch.dat", author = "Diarandor", license = "CC BY-SA 4.0" }

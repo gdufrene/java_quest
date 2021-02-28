@@ -1044,6 +1044,15 @@ tile{
   pattern = "1878",
 }
 
+tile{
+  layer = 0,
+  x = 128,
+  y = 48,
+  width = 16,
+  height = 8,
+  pattern = "258",
+}
+
 teletransporter{
   layer = 0,
   x = -16,
@@ -1053,6 +1062,32 @@ teletransporter{
   transition = "scrolling",
   destination_map = "beach2",
   destination = "_side",
+}
+
+teletransporter{
+  layer = 0,
+  x = 136,
+  y = 0,
+  width = 48,
+  height = 16,
+  destination_map = "treasure",
+}
+
+destination{
+  name = "from_cave",
+  layer = 0,
+  x = 160,
+  y = 21,
+  direction = 3,
+}
+
+npc{
+  layer = 0,
+  x = 136,
+  y = 53,
+  direction = 3,
+  subtype = 0,
+  behavior = "dialog#endquest.sign",
 }
 
 tile{
@@ -1107,5 +1142,14 @@ tile{
   width = 48,
   height = 40,
   pattern = "1857",
+}
+
+tile{
+  layer = 1,
+  x = 128,
+  y = 32,
+  width = 16,
+  height = 16,
+  pattern = "259",
 }
 

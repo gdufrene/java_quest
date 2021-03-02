@@ -714,7 +714,7 @@ npc{
   y = 125,
   direction = 3,
   subtype = 1,
-  sprite = "npc/man/man3.1",
+  sprite = "npc/man/man28.7",
 }
 
 npc{

@@ -34,6 +34,13 @@ animation{
   },
 }
 animation{
+  name = "key",
+  src_image = "items/keys.png",
+  directions = {
+    { x = 48, y = 16, frame_width = 16, frame_height = 16, origin_x = 8, origin_y = 13 },
+  },
+}
+animation{
   name = "potion",
   src_image = "items/potion_bottles.png",
   directions = {

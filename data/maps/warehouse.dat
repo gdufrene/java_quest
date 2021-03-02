@@ -1074,6 +1074,7 @@ npc{
   layer = 0,
   x = 192,
   y = 373,
+  enabled_at_start = false,
   direction = 3,
   subtype = 1,
   sprite = "animals/beaver",
@@ -1084,6 +1085,7 @@ npc{
   layer = 0,
   x = 216,
   y = 373,
+  enabled_at_start = false,
   direction = 3,
   subtype = 1,
   sprite = "npc/man/groot",
@@ -1094,6 +1096,7 @@ npc{
   layer = 0,
   x = 240,
   y = 373,
+  enabled_at_start = false,
   direction = 3,
   subtype = 1,
   sprite = "npc/kaleido",
@@ -1104,6 +1107,7 @@ npc{
   layer = 0,
   x = 264,
   y = 373,
+  enabled_at_start = false,
   direction = 3,
   subtype = 1,
   sprite = "enemies/soldier",
@@ -1119,13 +1123,15 @@ sensor{
 }
 
 npc{
-  name = "Joe",
+  name = "joe",
   layer = 0,
   x = 264,
   y = 421,
-  direction = 1,
+  enabled_at_start = false,
+  direction = 3,
   subtype = 1,
   sprite = "npc/man/man2",
+  behavior = "dialog#warehouse.joe",
 }
 
 npc{
@@ -1135,6 +1141,30 @@ npc{
   direction = 3,
   subtype = 1,
   behavior = "dialog#warehouse.infodb",
+}
+
+npc{
+  name = "bob",
+  layer = 0,
+  x = 240,
+  y = 421,
+  enabled_at_start = false,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/man/man2.1",
+  behavior = "dialog#warehouse.bob",
+}
+
+npc{
+  name = "spencer",
+  layer = 0,
+  x = 216,
+  y = 421,
+  enabled_at_start = false,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/man/man28.7",
+  behavior = "dialog#warehouse.spencer",
 }
 
 tile{

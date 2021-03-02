@@ -12,26 +12,18 @@ local game = map:get_game()
 
 local registerServlet = "http://localhost:8080/exo201/registerServlet"
 
-
+local npc_entered = false
+local npc_register_left = {}
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	paul.step = 1
-	assistant.step = 4
-	print("Map started")
-	-- code = sol.net.http_get(registerServlet)
-	print("quest dir => ", os.getenv("HOME"))
+	paul.step = game:get_value("paul_step") or 6
+	assistant.step = game:get_value("assistant_step") or 1
+	local open = game:get_value("archives_door")
+	if open == nil then open = true end
+	map:set_entities_enabled("archives_door", false)
 end
 
--- Event called after the opening transition effect of the map,
--- that is, when the player takes control of the hero.
-function map:on_opening_transition_finished()
-
-end
-
-function store:on_interaction()
-	
-end
 
 function run_step(npc, callback)
 	game:start_dialog("warehouse." .. npc:get_name() .. "_" .. npc.step, function(r) 
@@ -40,26 +32,6 @@ function run_step(npc, callback)
 			npc:on_interaction() -- when suceed relaunch new dialog.
 		end
 	end)
-end
-
-function query_action(action)
-	return sol.net.http_post("/exo201/test-warehouse?action=" .. action)
-end
-
-function test_warehouse(action, feedback)
-	local code, html = query_action(action)
-	print("[Test]", action, code)
-	if code == 500 then
-		print(html)
-	end
-	if feedback then
-		if code == 200 then 
-			sol.audio.play_sound("ok") 
-		else 
-			sol.audio.play_sound("wrong") 
-		end
-	end
-	return code == 200
 end
 
 function always_continue(r) 
@@ -74,11 +46,37 @@ function continue_when_1(r)
 	return r == 1
 end
 
-function fn_testing_warehouse(action)
-	return function(r)
-		if r == 1 then
-			return test_warehouse(action, true)
+function check_common_npc(results) 
+	allOk = true
+	for k, v in pairs(results) do
+		print("Enregistrement de "..k..": "..(v and "Ok" or "Erreur"))
+		allOk = allOk and v
+	end
+	if allOk then
+		paul.step = 5
+	else
+		paul.step = 4
+	end
+	npc_entered = false
+	paul:on_interaction()
+end
+
+function check_after_erroneous_npc_completed(npc)
+	local i = 0
+	local hasLeft = false
+	for k, v in ipairs(npc_register_left) do
+		if v == npc then 
+			i = k
+		else
+			hasLeft = true
 		end
+	end
+	if i > 0 then
+		table.remove(npc_register_left, i)
+	end
+	if not hasLeft then
+		paul.step = 6 -- Ok !
+		paul:on_interaction()
 	end
 end
 
@@ -93,10 +91,64 @@ function paul:on_interaction()
 			return false
 		end,
 		-- 2 -- help accepted, wait for assistant
-		never_continue,
-		-- 3
 		function()
-		end
+			game:set_value("paul_step", 2)
+			return false
+		end,
+		-- 3 -- common npc comes and register ...
+		function()
+			if npc_entered then return false end
+			do_enter_then({joe, bob, spencer}, function()
+				dataTable = {
+					joe={
+						firstname= "Joe",
+						lastname= "Black",
+						email= "joe.black@mooc.fun",
+					},
+					bob={
+						firstname= "Bob",
+						lastname= "Razowski",
+						email= "bob.razowski@mooc.fun",
+					},
+					spencer={
+						firstname= "Spencer",
+						lastname= "Andmarc",
+						email= "spencer.andmarc@mooc.fun",
+					}
+				}
+				register_common_npc({joe, bob, spencer}, dataTable, check_common_npc)
+			end)
+			npc_entered = true
+			return false
+		end,
+		-- 4 --
+		function(r)
+			if r == 2 then return false end
+			self.step = 2
+			return true 
+		end,
+		-- 5 -- erroneous npc register
+		function()
+			game:set_value("paul_step", 5)
+			if npc_entered then return false end
+			npc_register_left = {soldier, kaleido, groot, phil}
+			do_enter_then(npc_register_left, never_continue)
+			npc_entered = true
+			return false
+		end,
+		-- 6 -- Succeed
+		function()
+			paul.step = 7
+			game:set_value("paul_step", 7)
+			assistant.step = 11
+			game:set_value("assistant_step", 11)
+			sol.timer.start(750, function()
+				game:get_hero():start_treasure("key", 1)
+			end)
+			return false
+		end,
+		-- 7 -- End
+		never_continue
 	}
 	run_step(self, steps[self.step])
 end
@@ -130,8 +182,10 @@ function assistant:on_interaction()
 		end,
 		-- 4 -- Ok text
 		function()
+			game:set_value("assistant_step", 4)
 			sol.audio.play_sound("ok")
 			map:set_entities_enabled("archives_door", false)
+			game:set_value("archives_door", false)
 			return false
 		end,
 		-- 5 -- test delete
@@ -182,9 +236,30 @@ function assistant:on_interaction()
 			sol.sql.query("delete from users where email = ''")
 			return false
 		end,
-		-- 7 -- Succeed
-
-
+		-- 7 --
+		function()
+			game:set_value("assistant_step", 7)
+			return true
+		end,
+		-- 8 -- check JSP form
+		function(r)
+		end,
+		-- 9 -- error check JSP
+		function(r)
+			if r == 1 then 
+				self.step = 7
+			else
+				self.step = 8
+			end
+			return false
+		end,
+		-- 10 --
+		function()
+			game:set_value("assistant_step", 10)
+			return false
+		end,
+		-- 11 -- after the end of all tasks
+		never_continue
 	}
 	run_step(self, steps[self.step])
 end
@@ -213,7 +288,7 @@ function test_register_noparam(name, data)
 	print("[POST] "..body)
 
 	if true then
-		return false -- TODO: for tests only !!!
+		return true -- TODO: for tests only !!!
 	end
 
 	code = sol.net.http_post(registerServlet, body, ctx)
@@ -297,6 +372,24 @@ function goto_outside_then(npc, cb)
 	end)
 end
 
+function goto_initial_then(npc, cb)
+	mvt = sol.movement.create("target")
+	mvt:set_ignore_obstacles()
+	mvt:set_target(npc.initial_position[1], npc.initial_position[2])
+	mvt:start(npc, function()
+		mvt:stop()
+		cb()
+	end)
+end
+
+function do_moves_enter_wait(npc, cb)
+	fallback_movements(npc, {
+		align_to_waypoint_then,
+		goto_initial_then,
+		end_movement(cb)
+	})	
+end
+
 function do_moves_to_outside_then(npc, cb)
 	fallback_movements(npc, {
 		align_to_waypoint_then,
@@ -317,6 +410,31 @@ function do_again_fn(npc)
 		return false
 	end
 end
+
+function do_enter_then(npcs, cb)
+	local i = 0
+	iter = function()
+		i = i + 1
+		npc = npcs[i]
+		if npc == nil then 
+			cb() 
+			return nil
+		end
+		if npc.initial_position == nil then
+			x, y = npc:get_position()
+			npc.initial_position = {x, y}
+		end
+		x, y = from_outside:get_position()
+		npc:set_position(x, y)
+		npc:set_enabled(true)
+		do_moves_enter_wait(npc, function() 
+			npc:get_sprite():set_direction(3)
+			iter()
+		end)
+	end
+	iter()
+end
+
 
 function npc_try_register(npc, data, ignore_param)
 	return function()
@@ -354,6 +472,7 @@ function npc_registering_steps(npc, registerFn)
 		function()
 			do_moves_to_outside_then(npc, function()
 				npc:set_enabled(false)
+				check_after_erroneous_npc_completed(npc)
 			end)
 			return false
 		end,
@@ -456,6 +575,7 @@ end
 
 function end_movement(cb)
 	return function(npc, next_cb)
+		npc:get_sprite():set_animation("stopped")
 		cb()
 	end
 end
@@ -480,21 +600,31 @@ function do_moves_to_register_then( npc, cb )
 	})
 end
 
-function store:on_interaction()
-	local code, html = query_action("getData1")
-	local txt = game:get_text_box()
-	txt:set_size(40, 6)
-	if code == 200 then
-		local text = html:gsub("\r\n", "\n"):gsub("\r", "\n")
-    	local line_it = text:gmatch("([^\n]*)\n")  -- Each line including empty ones.
-    	local next_line = line_it()
-    	while next_line ~= nil do
-    		txt:add_line(next_line)
-    		next_line = line_it()
-    	end
-	else
-		txt:add_line("Erreur " .. code)
-		txt:add_line("Impossible d'afficher les données")
+-- the callback has one parameter : succeed (boolean)
+function do_register_then(npc, data, cb)
+	local result = {}
+	do_moves_to_register_then(npc, function()
+		res = test_register_noparam("", data)
+		do_moves_to_outside_then(npc, function()
+			npc:set_enabled(false)
+			cb( res )
+		end)
+	end)
+end
+
+function register_common_npc(npcs, dataTable, cb)
+	local i = 0
+	local results = {}
+	iter = function()
+		i = i + 1
+		local npc = npcs[i]
+		if npc == nil then return cb(results) end
+		data = dataTable[npc:get_name()]
+		if npc == nil then return iter() end
+		do_register_then(npc, data, function(res)
+			results[npc:get_name()] = res
+			iter()
+		end)
 	end
-	sol.menu.start(game, txt)
+	iter()
 end

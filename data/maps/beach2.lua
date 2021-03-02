@@ -14,8 +14,9 @@ require("scripts/util/dump")
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	gidebessai.step = game:get_value("gidebessai_step") or 1
-	local open = game:get_value("warehouse_door") or true
+	gidebessai.step = game:get_value("gidebessai_step") or 9 --fixme
+	local open = game:get_value("warehouse_door")
+	if open == nil then open = true end
 	map:set_entities_enabled("warehouse_door", open)
 end
 
@@ -38,9 +39,6 @@ end
 
 function continue_when_1(r) 
 	return r == 1
-end
-
-function gidebessai:on_interaction() 
 end
 
 function init_database()
@@ -92,6 +90,7 @@ function gidebessai:on_interaction()
 		continue_when_1,
 		-- 3 -- SQL
 		function()
+			print("Votre base sera dans le répertoire => ", os.getenv("HOME"))
 			res = init_database()
 			if ( res == "Ok" ) then
 				self.step = self.step + 1
@@ -127,7 +126,7 @@ function gidebessai:on_interaction()
 		-- 9 -- ok !
 		function()
 			map:set_entities_enabled("warehouse_door", false)
-			game:set_value("warehouse_door", "open")
+			game:set_value("warehouse_door", false)
 			self.step = 10
 			game:set_value("gidebessai_step", 10)
 			return false
@@ -140,6 +139,7 @@ function gidebessai:on_interaction()
 		end
 
 	}
+	game:set_value("gidebessai_step", self.step)
 	run_step(self, steps[self.step])
 end
 

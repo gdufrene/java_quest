@@ -105,6 +105,7 @@ sprite{ id = "hud/icon_pause", description = "Pause icon" }
 sprite{ id = "hud/items_box" }
 sprite{ id = "hud/magic_bar", description = "Magic bar" }
 sprite{ id = "items/item_bag" }
+sprite{ id = "items/key" }
 sprite{ id = "items/voadi_items", description = "Items" }
 sprite{ id = "menus/arrow", description = "Arrow" }
 sprite{ id = "menus/game_over_blood", description = "Game-over (bleeding)" }
@@ -291,6 +292,7 @@ item{ id = "bomb", description = "Bomb" }
 item{ id = "gem", description = "Gem (x1 / x5 / x20 / x50 / x300)" }
 item{ id = "heart", description = "Heart" }
 item{ id = "item_bag" }
+item{ id = "key" }
 item{ id = "money_bag", description = "Money bag (small / large / huge)" }
 item{ id = "potion" }
 item{ id = "sword", description = "Sword" }

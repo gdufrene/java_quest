@@ -39,6 +39,15 @@ incroyable de choses.
 }
 
 dialog{
+  id = "_treasure.key.1",
+  text = [[
+C'est la clé du succès !
+Recherche les coffres de la caverne
+des mérites pour l'utiliser.
+]],
+}
+
+dialog{
   id = "_treasure.potion.2",
   text = [[
 Tu as trouvé une potion bleue.
@@ -537,6 +546,13 @@ accueillir. Merci de ton aide.
 }
 
 dialog{
+  id = "warehouse.assistant_11",
+  text = [[
+Merci pour tout.
+]],
+}
+
+dialog{
   id = "warehouse.assistant_2",
   question = "1",
   skip = "all",
@@ -674,6 +690,16 @@ plus d'infos.
 Je te rappelle les consignes ?
 Oui, j'ai du oublié un truc.
 Non, ça ira.
+]],
+}
+
+dialog{
+  id = "warehouse.bob",
+  skip = "all",
+  text = [[
+Je suis Bob, bucheron. Je souhaite
+devenir citoyen enregistré de ce
+royaume.
 ]],
 }
 
@@ -874,6 +900,16 @@ enregistrement de la table users.
 }
 
 dialog{
+  id = "warehouse.joe",
+  skip = "all",
+  text = [[
+Je suis Joe, fabriquant de sac.
+J'ai une boutique sur la plage.
+Je viens m'enregistrer.
+]],
+}
+
+dialog{
   id = "warehouse.kaleido_1",
   question = "1",
   skip = "all",
@@ -980,6 +1016,9 @@ dialog{
 Certaines personnes n'ont pas 
 réussi à s'enregistrer. Tu pourrais
 voir ce qui ne va pas.
+Si besoin, retourne voir Gidébessai
+pour ré-initialiser ta base de données.
+
 Relancer les inscriptions ?
 Oui, cette fois c'est bon.
 Juste une dernière vérif.
@@ -1136,6 +1175,15 @@ dialog{
 Hé bien j'ai sans doute sous-estimé
 cette administration est tout de même
 bien gérée.
+]],
+}
+
+dialog{
+  id = "warehouse.spencer",
+  text = [[
+Salut, moi c'est Spencer, je passais
+par là et il parait que l'on reçoit un 
+cadeau lorsque l'on s'enregistre...
 ]],
 }
 

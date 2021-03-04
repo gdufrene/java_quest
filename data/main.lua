@@ -4,24 +4,6 @@
 require("scripts/features")
 require("scripts/multi_events")
 
-function dump(o)
-  if type(o) ~= 'table' then
-    return tostring(o)
-  end
-
- local s = '{ '
- local first = true
- for k,v in pairs(o) do
-    if type(k) ~= 'number' then k = tostring(k) end
-    if first == false then s = s .. ", " end
-    first = false
-    s = s .. k .. ' => ' .. dump(v) .. "\n"
- end
- return s .. '} '
-
-end
-
-
 -- Edit scripts/menus/initial_menus_config.lua to add or change menus before starting a game.
 local initial_menus_config = require("scripts/menus/initial_menus_config")
 local initial_menus = {}
@@ -29,26 +11,12 @@ local initial_menus = {}
 -- This function is called when Solarus starts.
 function sol.main:on_started()
 
-  print("This is a sample quest for Solarus.")
+  sol.log.info("Les fondamentaux du développement web en Java EE - ULille 2021 - CC (BY-NC-SA) - By G.Dufrene")
 
-  sol.video.set_window_title("Sample quest - Solarus " .. sol.main.get_solarus_version())
+  sol.video.set_window_title("Java Quest - Solarus " .. sol.main.get_solarus_version())
 
   sol.main.load_settings()
   math.randomseed(os.time())
-
---[[
-  local code, t = sol.net.json_post("/", {hello="world"}, 
-    {cookies = {JSESSIONID = "1234567890"}, headers = {UserAgent = "solarus"}} )
-  print( dump(t) )
-
-
-  sol.timer.start(sol.main, 250, function()
-    local game_manager = require("scripts/game_manager")
-    local game = game_manager:create("save1.dat")
-    game:start();
-  end)
-  if true then return end
-]]--
 
   -- Show the initial menus.
   if #initial_menus_config == 0 then
@@ -59,13 +27,8 @@ function sol.main:on_started()
     initial_menus[#initial_menus + 1] = require(menu_script)
   end
 
-  
-  
-  
   local on_top = false  -- To keep the debug menu on top.
   
-  
-
   for i, menu in ipairs(initial_menus) do
     function menu:on_finished()
       if sol.main.get_game() ~= nil then
@@ -80,7 +43,6 @@ function sol.main:on_started()
   end
 
   sol.menu.start(sol.main, initial_menus[1], on_top)
-  
   
   local game_meta = sol.main.get_metatable("game")
   game_meta:register_event("on_started", function(game)

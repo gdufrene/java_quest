@@ -9,6 +9,7 @@ require("scripts/hud/hud")
 require("scripts/menus/dialog_box")
 require("scripts/menus/items_box")
 require("scripts/menus/text_box")
+require("scripts/menus/empty_box")
 require("scripts/mouse_control")
 
 return true

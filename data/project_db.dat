@@ -142,6 +142,7 @@ sprite{ id = "npc/woman_1e", description = "Woman 1e" }
 sprite{ id = "npc/zoria_sign", description = "Zoria Sign" }
 sprite{ id = "plants/rafflesia-large", description = "Rafflesia (large)" }
 sprite{ id = "plants/rafflesia-small", description = "Rafflesia (small)" }
+sprite{ id = "qrcode/share" }
 sprite{ id = "shadows/shadow_big", description = "Big shadow" }
 sprite{ id = "shadows/shadow_big_dynamic", description = "Big dynamic shadow" }
 sprite{ id = "shadows/shadow_huge_dynamic", description = "Huge dynamic shadow" }

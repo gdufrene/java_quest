@@ -326,14 +326,12 @@ end
 
 function deep_search(html, tagName, cb)
 	for k, v in ipairs(html) do
-		if v.tagName == tagName then 
-			if cb(v) then return end
+		if v.tagName:upper() == tagName:upper() then 
+			if cb(v) then return v end
 		end
 		if v.childNodes ~= nil then 
-			local sub = deep_search(v.childNodes, tagName, cb) 
-			if sub ~= nil then 
-				if cb(v) then return end
-			end
+			local res = deep_search(v.childNodes, tagName, cb) 
+			if res ~= nil then return res end
 		end
 	end
 	return nil

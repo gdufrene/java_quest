@@ -10,14 +10,18 @@
 local map = ...
 local game = map:get_game()
 
-local registerServlet = "http://localhost:8080/exo201/registerServlet"
+local registerServlet = "http://localhost:8080/exo201/register"
+local registerJsp = "http://localhost:8080/exo201/register.jsp"
+
+require("scripts/util/html_parser")
+require("scripts/util/dump")
 
 local npc_entered = false
 local npc_register_left = {}
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	paul.step = game:get_value("paul_step") or 6
+	paul.step = game:get_value("paul_step") or 1
 	assistant.step = game:get_value("assistant_step") or 1
 	local open = game:get_value("archives_door")
 	if open == nil then open = true end
@@ -49,7 +53,7 @@ end
 function check_common_npc(results) 
 	allOk = true
 	for k, v in pairs(results) do
-		print("Enregistrement de "..k..": "..(v and "Ok" or "Erreur"))
+		-- print("Enregistrement de "..k..": "..(v and "Ok" or "Erreur"))
 		allOk = allOk and v
 	end
 	if allOk then
@@ -167,7 +171,7 @@ function assistant:on_interaction()
 			res = sol.sql.query("select * from users where email = 'paul@mooc.fun'")
 			if ( res == "Ok" ) then
 				sol.audio.play_sound("wrong") 
-				print("Aucun utilisateur avec le mail 'paul@mooc.fun' trouvé")
+				sol.log.error("Aucun utilisateur avec le mail 'paul@mooc.fun' trouvé")
 				self.step = 2
 				return false
 			end
@@ -176,7 +180,7 @@ function assistant:on_interaction()
 				return true
 			end
 			sol.audio.play_sound("wrong") 
-			print("L'utilisateur ne correspond pas.", dump(row))
+			sol.log.error("L'utilisateur ne correspond pas."..dump(row))
 			self.step = 2
 			return false
 		end,
@@ -205,35 +209,35 @@ function assistant:on_interaction()
 			end
 			code = sol.net.http_get(registerServlet)
 			if code < 0 then
-				print("Erreur de connexion vers "..registerServlet)
+				sol.log.error("Erreur de connexion vers "..registerServlet)
 				return false
 			end
 			if code == 404 or code >= 500 then
-				print("Erreur "..code.." vers "..registerServlet)
+				sol.log.error("Erreur ["..code.."] vers "..registerServlet)
 				return false
 			end
-			local body = "firstname=&lastname=&email=&password=azerty";
+			local body = "firstname=aaa&lastname=aaa&email=aaa@aaa.aaa&password=azerty";
 			local ctx = { headers = {} }
 			ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
-			print("[POST] "..body)
+			sol.log.debug("[POST] "..registerServlet.." "..body)
 			code = sol.net.http_post(registerServlet, body, ctx)
 			if code < 200 or code >= 400 then
-				print("Erreur "..code)
-				sol.sql.query("delete from users where email = ''")
+				sol.log.error("Code Http ["..code.."], attendu 2xx ou 3xx")
+				sol.sql.query("delete from users where email = 'aaa@aaa.aaa'")
 				return false
 			end
-			res = sol.sql.query("select * from users where email = ''")
+			res = sol.sql.query("select * from users where email = 'aaa@aaa.aaa'")
 			if res == "Ok" then 
-				print("L'utilisateur n'a pas été retrouvé dans la base")
+				sol.log.error("L'utilisateur n'a pas été retrouvé dans la base")
 				return false
 			end
-			if type(res) == "table" and res[1]["email"] == '' then
+			if type(res) == "table" and res[1]["email"] == 'aaa@aaa.aaa' then
 				-- OK !!
 				sol.audio.play_sound("ok")
 				return true
 			end
-			print("L'utilisateur enregistré n'a pas les bonnes données")
-			sol.sql.query("delete from users where email = ''")
+			sol.log.error("L'utilisateur enregistré n'a pas les bonnes données")
+			sol.sql.query("delete from users where email = 'aaa@aaa.aaa'")
 			return false
 		end,
 		-- 7 --
@@ -243,11 +247,26 @@ function assistant:on_interaction()
 		end,
 		-- 8 -- check JSP form
 		function(r)
+			sol.log.debug("[GET] "..registerJsp)
+			code, body = sol.net.http_get(registerJsp)
+			if code < 0 then
+				sol.log.error("Erreur de connexion vers "..registerJsp)
+				return false
+			end
+			local errorLabel = check_register_form(body)
+			if errorLabel then
+				sol.log.error( errorLabel )
+				sol.audio.play_sound("wrong")
+				return true
+			end
+			self.step = self.step + 1
+			return true
 		end,
 		-- 9 -- error check JSP
 		function(r)
 			if r == 1 then 
-				self.step = 7
+				self.step = 6
+				return true
 			else
 				self.step = 8
 			end
@@ -256,6 +275,7 @@ function assistant:on_interaction()
 		-- 10 --
 		function()
 			game:set_value("assistant_step", 10)
+			paul.step = 3 -- register_common_npc
 			return false
 		end,
 		-- 11 -- after the end of all tasks
@@ -265,7 +285,6 @@ function assistant:on_interaction()
 end
 
 function test_register_noparam(name, data)
-
 	formData = {
 		firstname= "Someone",
 		lastname= "Withname",
@@ -285,17 +304,8 @@ function test_register_noparam(name, data)
 	end
 	local ctx = { headers= {} }
 	ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
-	print("[POST] "..body)
-
-	if true then
-		return true -- TODO: for tests only !!!
-	end
-
-	code = sol.net.http_post(registerServlet, body, ctx)
-	if code < 200 or code >= 400 then
-		return false
-	end
-	return true
+	sol.log.debug("[POST] "..registerServlet.." "..body)
+	return sol.net.http_post(registerServlet, body, ctx)
 end
 
 function archives_sensor:on_activated()
@@ -362,6 +372,48 @@ function etagere_6:on_interaction()
 	show_user_data(6)
 end
 
+function check_register_form(body)
+	local html = parse_html(body, false)
+	-- print(dump(html))
+	local form = html_search(html, "form")
+	if form == nil then
+		return "Il n'y a pas de formulaire dans la page"
+	end
+	-- print ( dump(form) )
+	local method = form.attr.method or ""
+	if method:upper() ~= "POST" then
+		return "La méthode de transmission des données du formulaire n'est pas correcte"
+	end
+	if not form.attr.action then
+		return "Le formulaire devrait contenir un attribut 'action'"
+	end
+	local expected = "register"
+	if form.attr.action:sub(-#expected) ~= expected  then
+		return "L'action du formulaire devrait terminer par 'register'"
+	end
+	local inputs = html_all(form.childNodes, "input")
+	local foundInput = { firstname = false, lastname = false, email = false, password = false }
+	if inputs ~= nil then
+		for k, v in pairs(inputs) do
+			if v.attr.name ~= nil then
+				foundInput[v.attr.name] = true
+			end
+		end
+	end
+	for k, v in pairs(foundInput) do 
+		if v == false then 
+			return "Il manque la zone '" .. k .. "' dans le formulaire"
+		end
+	end
+	local foundAlert = deep_search(html, "div", function(tag)
+		return tag.attr.role == "alert"
+	end)
+	if foundAlert then
+		return "Le message d'alerte ne devrait apparaitre qu'en cas d'erreur"
+	end
+	return nil
+end
+
 function goto_outside_then(npc, cb)
 	mvt = sol.movement.create("target")
 	mvt:set_ignore_obstacles()
@@ -413,7 +465,7 @@ end
 
 function do_enter_then(npcs, cb)
 	local i = 0
-	iter = function()
+	iter_enter_npc = function()
 		i = i + 1
 		npc = npcs[i]
 		if npc == nil then 
@@ -429,17 +481,23 @@ function do_enter_then(npcs, cb)
 		npc:set_enabled(true)
 		do_moves_enter_wait(npc, function() 
 			npc:get_sprite():set_direction(3)
-			iter()
+			iter_enter_npc()
 		end)
 	end
-	iter()
+	iter_enter_npc()
 end
 
 
 function npc_try_register(npc, data, ignore_param)
 	return function()
 		if not ignore_param then ignore_param = "" end
-		if not test_register_noparam(ignore_param, data) then
+		code, html = test_register_noparam(ignore_param, data)
+		local check_mail = nil
+		if ignore_param ~= "" then
+			check_mail = data.email
+		end
+		local res = check_register_erroneous_npc(code, html, check_mail)
+		if not res then
 			npc.step = 3
 			npc:on_interaction()
 			return
@@ -447,6 +505,29 @@ function npc_try_register(npc, data, ignore_param)
 		npc.step = 4
 		npc:on_interaction()
 	end
+end
+
+function check_register_erroneous_npc(code, html, user)
+	if code < 200 or code >= 300 then
+		sol.log.error("Code ["..code.."]. Le code de retour HTTP attendu est 2xx")
+		return false
+	end
+	if user then
+		local res = sol.sql.query("select * from users where email = '"..user.."'")
+		if res ~= "Ok" then
+			sol.log.error("L'utilisateur '"..user.."' ne devrait pas être en base")
+			return false
+		end
+	end
+	html = parse_html(html, false)
+	local foundAlert = deep_search(html, "div", function(tag)
+		return tag.attr.role == "alert"
+	end)
+	if not foundAlert then
+		sol.log.error("Un message d'alerte devrait apparaitre en cas d'erreur")
+		return false
+	end
+	return true
 end
 
 function npc_registering_steps(npc, registerFn)
@@ -515,7 +596,7 @@ function soldier:on_interaction()
 		lastname= "Lupin",
 		email= "lionel.seinturier@foo.bar"
 	}
-	local registerFn = npc_try_register(self, data, "")
+	local registerFn = npc_try_register(self, data, nil)
 	npc_registering_steps(self, registerFn)
 end
 
@@ -581,14 +662,20 @@ function end_movement(cb)
 end
 
 function fallback_movements(npc, functions)
-	local i = 0
-	nextFn = function()
-		i = i + 1
-		if functions[i] then
-			functions[i](npc, nextFn)
+	local t = {
+		functions=functions,
+		npc=npc,
+		i=0
+	}
+	function t:nextFn()
+		self.i = self.i + 1
+		if self.functions[self.i] then
+			self.functions[self.i](self.npc, function()
+				self:nextFn()
+			end)
 		end
 	end
-	nextFn()
+	t:nextFn()
 end
 
 function do_moves_to_register_then( npc, cb )
@@ -604,10 +691,10 @@ end
 function do_register_then(npc, data, cb)
 	local result = {}
 	do_moves_to_register_then(npc, function()
-		res = test_register_noparam("", data)
+		code, html = test_register_noparam(nil, data)
 		do_moves_to_outside_then(npc, function()
 			npc:set_enabled(false)
-			cb( res )
+			cb( code, html )
 		end)
 	end)
 end
@@ -615,16 +702,46 @@ end
 function register_common_npc(npcs, dataTable, cb)
 	local i = 0
 	local results = {}
-	iter = function()
+	iter_register_common_npc = function()
 		i = i + 1
 		local npc = npcs[i]
 		if npc == nil then return cb(results) end
 		data = dataTable[npc:get_name()]
-		if npc == nil then return iter() end
-		do_register_then(npc, data, function(res)
+		if npc == nil then return iter_register_common_npc() end
+		do_register_then(npc, data, function(code, html)
+			res = check_register_common_npc(code, html, data)
 			results[npc:get_name()] = res
-			iter()
+			iter_register_common_npc()
 		end)
 	end
-	iter()
+	iter_register_common_npc()
+end
+
+function check_register_common_npc( code, html, data )
+	if code < 200 or code >= 400 then
+		sol.log.error("Code ["..code.."]. Le code de retour HTTP attendu est 2xx ou 3xx")
+		if code == 500 then
+			html = parse_html(html, false)
+			local pre = html_search(html, "pre") or {}
+			if pre.textNode then
+				sol.log.debug(pre.textNode)
+			end
+		end
+		return false
+	end
+	local user = data.email
+	res = sol.sql.query("select * from users where email = '"..user.."'")
+	if res == "Ok" then
+		sol.log.error("L'utilisateur '"..user.."' n'a pas été retouvé en base après enregistrement")
+		return false
+	end
+	res = res[1]
+	for k, v in pairs(res) do
+		if data[k] ~= nil and data[k] ~= v then
+			sol.log.error("La donnée "..k.."='"..v.."' de l'utilisateur '"..user.."' ne correspond pas à celle transmise '"..data[k].."'")
+			return false
+		end
+	end
+	sol.log.debug("Enregistrement de '"..data.email.."'' Ok !")
+	return true
 end

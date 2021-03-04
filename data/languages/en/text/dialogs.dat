@@ -344,7 +344,7 @@ dialog{
   id = "endquest.info",
   text = [[
 Termine les tâches données
-par Joe et Paul afin de 
+par Dave et Paul afin de 
 partager un certificat de
 réussite sur les réseaux
 sociaux (linkedIn, Facebook)
@@ -874,8 +874,8 @@ dialog{
   skip = "all",
   text = [[
 JE S'APPELLE GROOT !!!
-(il semblerait que sa demande soit
-accepté ... étrange)
+(il semblerait que l'erreur
+ne soit pas détectée ... étrange)
 Tu devrais revoir la vérification du
 prénom.
 ]],
@@ -942,9 +942,9 @@ dialog{
   id = "warehouse.kaleido_3",
   skip = "all",
   text = [[
-Ma demande a abouttie, je savais
-que mon sort d'ignorance de mot de
-passe fonctionnerait !
+Je n'ai pas rencontré d'erreur.
+Mon sort d'ignorance de mot de
+a fonctionné, évidemment !
 (vous devriez revoir la gestion du mot
 de passe).
 ]],
@@ -1160,7 +1160,7 @@ dialog{
   id = "warehouse.soldier_3",
   skip = "all",
   text = [[
-Hihihihi. Ni vu ni connu.
+Ni vu ni connu. Aucunne erreur.
 Cette administration est vraiment 
 trop facile à duper.
 (vous devriez revoir la manière de 
@@ -1173,8 +1173,8 @@ dialog{
   skip = "all",
   text = [[
 Hé bien j'ai sans doute sous-estimé
-cette administration est tout de même
-bien gérée.
+cette administration. Elle est  tout de 
+même bien gérée.
 ]],
 }
 

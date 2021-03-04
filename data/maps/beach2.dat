@@ -898,6 +898,16 @@ destination{
   direction = 1,
 }
 
+npc{
+  name = "imgbox",
+  layer = 0,
+  x = 216,
+  y = 165,
+  direction = 3,
+  subtype = 1,
+  sprite = "npc/astrologer",
+}
+
 tile{
   layer = 1,
   x = 120,

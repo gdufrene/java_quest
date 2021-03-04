@@ -1,12 +1,6 @@
 
 # TODO
 
-
-* Implémenter les vérifs formulaire JSP
-* Implémenter les vérifs persos normaux (code < 400 + données en base)
-* Implémenter les vérifs persos erreur (code < 300 + données PAS en base + champ en évidence)
-* Check de la clé à l'ouverture des coffres
-* Affichage du QrCode à chaque ouverture du coffre 
 * Système de point à chaque épreuve
 * Sauvegarde de l'état du jeu (+ reset ?)
 * écran d'accueil avec "Continuer" / "Nouveau"
@@ -19,4 +13,9 @@
 * Scripter les persos "normaux" pour les inscriptions simples
 * Scripter l'arrivée des persos "avec erreur" + fin des inscriptions
 * Donner la clé à la fin des inscriptions
+* Implémenter les vérifs formulaire JSP
+* Implémenter les vérifs persos normaux (code < 400 + données en base)
+* Implémenter les vérifs persos erreur (code < 300 + données PAS en base + champ en évidence)
+* Check de la clé à l'ouverture des coffres
+* Affichage du QrCode à chaque ouverture du coffre (revoir le QRcode linkedIn)
 

@@ -1,11 +1,3 @@
--- Lua script of map beach2.
--- This script is executed every time the hero enters this map.
-
--- Feel free to modify the code below.
--- You can add more events and remove the ones you don't need.
-
--- See the Solarus Lua API documentation:
--- http://www.solarus-games.org/doc/latest
 
 local map = ...
 local game = map:get_game()
@@ -14,7 +6,7 @@ require("scripts/util/dump")
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-	gidebessai.step = game:get_value("gidebessai_step") or 9 --fixme
+	gidebessai.step = game:get_value("gidebessai_step") or 1
 	local open = game:get_value("warehouse_door")
 	if open == nil then open = true end
 	map:set_entities_enabled("warehouse_door", open)
@@ -90,7 +82,7 @@ function gidebessai:on_interaction()
 		continue_when_1,
 		-- 3 -- SQL
 		function()
-			print("Votre base sera dans le répertoire => ", os.getenv("HOME"))
+			sol.log.info("Votre base sera dans le répertoire => "..os.getenv("HOME"))
 			res = init_database()
 			if ( res == "Ok" ) then
 				self.step = self.step + 1
@@ -108,7 +100,7 @@ function gidebessai:on_interaction()
 			end
 			res = sol.sql.query("Select * from users where email = 'gidebessai@mooc.fun'");
 			if ( type(res) == "table" and table.getn(res) >= 1 ) then
-				print("gidebessai@mooc.fun est toujours dans la table users.")
+				sol.log.error("gidebessai@mooc.fun est toujours dans la table users.")
 				self.step = 8
 				return false
 			end

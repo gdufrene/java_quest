@@ -75,11 +75,6 @@ local first_bag_cookies = {}
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
-
-	print("map has been started")
-	local r= sol.net.run()
-	print("result =>", r)
-
 	if game:get_item("item_bag"):has_variant() then
 		dave_step = 11
 	end
@@ -147,7 +142,7 @@ function do_delivery(delivery, cookies)
 		cookies = cookies
 	}
 	ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
-	print("[POST]", body)
+	sol.log.debug("[POST] "..bag_url.." "..body)
 	local code, html, headers = sol.net.http_post(bag_url, body, ctx)
 	return code, headers.cookies
 end
@@ -208,7 +203,7 @@ function html_to_items(html)
 				item["ref"] = item_id
 				item["qte"] = item_nb
 				table.insert(items, item)
-				print(item_id, item_nb)
+				-- print(item_id, item_nb)
 			end
 		end
 	end
@@ -230,7 +225,7 @@ function check_deliveries(expected, items)
 	-- print( "valid_items", dump(valid_items) )
 	for k, valid in pairs(valid_items) do
 		if valid == false then 
-			print("ERROR =>", string.format("L'item %s ne possède pas la bonne quantité (%03d)", k, expected[k]))
+			sol.log.error(string.format("L'item %s ne possède pas la bonne quantité (%03d)", k, expected[k]))
 			return false 
 		end
 	end
@@ -253,9 +248,10 @@ function get_bag_items(cookies, url)
 	}
 	if url == nil then url = bag_url end
 	local code, html = sol.net.http_get(url, ctx)
+	sol.log.debug("[GET] "..url)
 	-- local code, html = 200, "<html><head></head><body><ul><li class='scroll'>5</li><li class='bomb'>3</li><li class='oil_lamp'>6</li></ul></body></html>"
 	if code ~= 200 then 
-		print("ERROR =>", "Code de retour http incorrect: " .. code)
+		sol.log.error("Code de retour http incorrect: " .. code)
 		sol.audio.play_sound("wrong")
 		return {}
 	end
@@ -402,7 +398,7 @@ function dave:on_interaction()
 				sol.audio.play_sound("ok")
 				map:set_entities_enabled("chest_1")
 			else
-				print("ERROR =>", err)
+				sol.log.error(err)
 				sol.audio.play_sound("wrong")
 			end
 		elseif dave_step == 3 then
@@ -450,7 +446,7 @@ function dave:on_interaction()
 			map:set_entities_enabled("dave_bag", false)
 			dave_step = dave_step + 1
 		elseif dave_step > 11 then
-			print("no more steps")
+			sol.log.warn("no more steps")
 		end
 		
 	end)

@@ -1,0 +1,14 @@
+animation{
+  name = "facebook",
+  src_image = "qrcode/share-facebook.png",
+  directions = {
+    { x = 16, y = 16, frame_width = 168, frame_height = 168, origin_x = 0, origin_y = 0 },
+  },
+}
+animation{
+  name = "linkedin",
+  src_image = "qrcode/share-linkedin.png",
+  directions = {
+    { x = 0, y = 0, frame_width = 184, frame_height = 184, origin_x = 0, origin_y = 0 },
+  },
+}

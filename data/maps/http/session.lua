@@ -1,13 +1,3 @@
--- Lua script of map http/session.
--- This script is executed every time the hero enters this map.
-
--- Feel free to modify the code below.
--- You can add more events and remove the ones you don't need.
-
--- See the Solarus Lua API documentation:
--- http://www.solarus-games.org/doc/latest
-
-
 local map = ...
 local game = map:get_game()
 
@@ -19,8 +9,7 @@ local key_a = -1
 local key_b = -1
 
 
-
-
+local chestUrl = "http://localhost:8080/cave/chest"
 
 -- Event called at initialization time, as soon as this map is loaded.
 function map:on_started()
@@ -35,11 +24,13 @@ end
 function check_chest( cookies, key, item, variant ) 
 	local hero = game:get_hero()
 	local code, body, head
-	code, body, head = sol.net.http_get("/chest", {cookies=cookies})
+	code, body, head = sol.net.http_get(chestUrl, {cookies=cookies})
 	-- print( "check chest on session " .. cookies['JSESSIONID'] .. " returns " .. body )
+	sol.log.debug("[GET] "..chestUrl)
 	if ( code == 200 and tonumber(body) == key ) then
 		hero:start_treasure(item, variant)
 	else
+		sol.log.error("Code ["..code.."] Body: "..body)
 		sol.audio.play_sound("wrong")
 		hero:unfreeze();
 	end
@@ -58,7 +49,9 @@ function init_chest(chest)
 	local cookies
 	local code, body, head
 	
-	code, body, head = sol.net.http_post("/chest?item="..key)
+	local addItemUrl = chestUrl.."?item="..key
+	code, body, head = sol.net.http_post(addItemUrl)
+	sol.log.debug("[POST] "..addItemUrl)
 	if ( code == 200 ) then 
 		cookies = head["cookies"] 
 		chest:set_open(false)

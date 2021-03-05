@@ -27,11 +27,14 @@ function switch_bomb:on_activated()
   local a = math.random(100)
   local b = math.random(100)
   local str = "a=" .. a .. "&b=" .. b 
-	code, body = sol.net.http_get("/sum?"..str)
-    if code == 200 and tonumber(body) == (a+b) then
-      sol.audio.play_sound("ok")
-	  chest_bomb:set_enabled(true)
-	else
-	  sol.audio.play_sound("wrong3")
-    end
+  local url = "http://localhost:8080/cave/sum?"..str
+  sol.log.debug("[GET] "..url)
+	code, body = sol.net.http_get(url)
+  if code == 200 and tonumber(body) == (a+b) then
+    sol.audio.play_sound("ok")
+    chest_bomb:set_enabled(true)
+  else
+    sol.log.error("Code ["..code.."] Body: "..body)
+    sol.audio.play_sound("wrong3")
+  end
 end

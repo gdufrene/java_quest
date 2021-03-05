@@ -367,7 +367,7 @@ Soit 2 paramètres a et b envoyés en
 query string. Faîtes la somme et 
 retournez le résultat.
 Requête GET 
-/sum?a=x&b=y
+/cave/sum?a=x&b=y
 x et y sont deux entiers.
 ]],
 }
@@ -463,10 +463,10 @@ dialog{
 Marche sur cette stèle pour initialiser 
 le contenu des deux coffres.
 
-POST /chest?item=x
+POST /cave/chest?item=x
 Active le contenu d'un coffre.
 x sera un entier.
-GET /chest
+GET /cave/chest
 renvoie le contenu activé auparavent.
 A chaque session son coffre.
 ]],

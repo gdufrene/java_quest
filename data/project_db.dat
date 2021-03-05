@@ -110,6 +110,7 @@ sprite{ id = "items/voadi_items", description = "Items" }
 sprite{ id = "menus/arrow", description = "Arrow" }
 sprite{ id = "menus/game_over_blood", description = "Game-over (bleeding)" }
 sprite{ id = "menus/logo_univ" }
+sprite{ id = "menus/logo_univ_full" }
 sprite{ id = "menus/options_cursor", description = "Options cursor" }
 sprite{ id = "menus/solarus_logo", description = "Solarus logo" }
 sprite{ id = "menus/team_logo", description = "Solarus Team logo" }

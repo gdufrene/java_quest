@@ -186,12 +186,14 @@ function parse_html(data, lazy)
 			
 			if attr ~= "" then
 				node.attr = {}
+				local nbAttr = 0
 				
 				for n, v in string.gmatch(
 					attr, 
 					"%s([^%s=]+)=\"([^\"]+)\""
 				) do
 					node.attr[n] = string.gsub(v, '"', '[^\\]\\"')
+					nbAttr = nbAttr + 1
 				end
 				
 				for n, v in string.gmatch(
@@ -199,6 +201,17 @@ function parse_html(data, lazy)
 					"%s([^%s=]+)='([^']+)'"
 				) do
 					node.attr[n] = string.gsub(v, '"', '[^\\]\\"')
+					nbAttr = nbAttr + 1
+				end
+
+				if nbAttr == 0 then
+					for n, v in string.gmatch(
+						attr, 
+						"%s([^%s=]+)=([^ ]+)"
+					) do
+						node.attr[n] = string.gsub(v, '"', '[^\\]\\"')
+						nbAttr = nbAttr + 1
+					end
 				end
 			end
 			

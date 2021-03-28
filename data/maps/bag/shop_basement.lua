@@ -84,11 +84,19 @@ function map:on_started()
  		delivery.x, delivery.y = entity:get_position()
  		delivery.amount = math.random(10) + 3
 	end
-	if dave_step > 1 and dave_bag < 10 then 
+	if dave_step > 1 and dave_step < 10 then 
 		map:set_entities_enabled("dave_bag")
 	end
 	if dave_step == 3 then
 		map:set_entities_enabled("chest")
+	end
+
+	if bob_step > 1 then
+		map:set_entities_enabled("bob_bag")
+	end
+
+	if spencer_step > 1 then
+		map:set_entities_enabled("spencer_bag")
 	end
 
 	if dave_step == 11 then
@@ -143,8 +151,9 @@ function do_delivery(delivery, cookies)
 	}
 	ctx.headers["Content-Type"] = "application/x-www-form-urlencoded"
 	sol.log.debug("[POST] "..bag_url.." "..body)
+	sol.log.debug("[JSESSIONID] "..(cookies and cookies['JSESSIONID'] or "-vide-"))
 	local code, html, headers = sol.net.http_post(bag_url, body, ctx)
-	return code, headers.cookies
+	return code, (headers ~= nil and headers.cookies or nil)
 end
 
 
@@ -249,6 +258,7 @@ function get_bag_items(cookies, url)
 	if url == nil then url = bag_url end
 	local code, html = sol.net.http_get(url, ctx)
 	sol.log.debug("[GET] "..url)
+	sol.log.debug("[JSESSIONID] "..(cookies and cookies['JSESSIONID'] or "-vide-"))
 	-- local code, html = 200, "<html><head></head><body><ul><li class='scroll'>5</li><li class='bomb'>3</li><li class='oil_lamp'>6</li></ul></body></html>"
 	if code ~= 200 then 
 		sol.log.error("Code de retour http incorrect: " .. code)

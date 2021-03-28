@@ -3,7 +3,6 @@
 
 * Système de point à chaque épreuve
 * Sauvegarde de l'état du jeu (+ reset ?) + ajouter un item "continuer" sur menu
-* refaire toute la quête 
 * refaire les packages windows, mac et linux
 
 # DONE
@@ -19,3 +18,7 @@
 * Affichage du QrCode à chaque ouverture du coffre
 * vérifier les messages de debug (à mettre en log ERROR ?)
 * écran d'accueil avec "Nouveau"
+* Fix parsing des attributs html sans quotes ou guillemets
+* Affichage du JSESSION ID en lien avec les requêtes GET/POST pour l'exercice du Sac
+
+
